@@ -3,9 +3,12 @@
     justify-content: center;
     margin-bottom: 30px;
     
+    
 
 }
-
+.smallheader1{
+    display:none;
+}
 .tinydiv{
     margin-left:20px;
     

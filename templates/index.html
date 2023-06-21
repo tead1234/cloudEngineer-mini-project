@@ -11,7 +11,9 @@
         <p class="pname1">커피사줘<p>
         
         <div class="bigdiv">
+            
             <p class="pname">카페 등록 하기</p>
+            <div class="smallheader1" id="toggle">
             <form>
             <div class="smallheader">
                 <div class="tinydiv tinydiv-1">
@@ -39,9 +41,11 @@
                 </div>
             </div>
             </form>
+            </div>
         </div>
+    
     <div class="buttondiv">
-        <button class="buttonposition">카페등록</button>
+        <button class="buttonposition" onclick="toggle()">카페등록</button>
     </div>
 </header>
       
@@ -115,5 +119,11 @@ Ut ut qui et aliqua ex laboris. Ad occaecat pariatur id tempor minim ea tempor e
 
         <button class="footerbutton">등록하러 가기</button>
     </footer>
+    <script>
+        function toggle(){
+        toggle=document.getElementById('toggle')
+        toggle.style.display='block'
+        }
+    </script>
 </body>
 </html>
