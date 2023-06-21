@@ -11,37 +11,41 @@
         <p class="pname1">커피사줘<p>
         
         <div class="bigdiv">
+            
             <p class="pname">카페 등록 하기</p>
-            <form>
+            <div class="smallheader1" id="toggle">
+            <form action="./index" method="post">
             <div class="smallheader">
                 <div class="tinydiv tinydiv-1">
                     <p>카페 이름</p>
-                    <input type="text" class="inputwidth">
+                    <input type="text" class="inputwidth" name ='cafe-name'>
                 </div>
                 <div class="tinydiv">
                     <p>분위기</p>
-                    <input type="text"class="inputwidth">
+                    <input type="text"class="inputwidth" name ='atmospher'>
                 </div>
                 <div class="tinydiv">
                     <p>테이블 수</p>
-                    <input type="text" class="inputwidth">
+                    <input type="int" class="inputwidth" name ='tableCnt'>
                 </div>
                 <div class="tinydiv">
-                    <p>영업시간</p>
-                    <input type="text" class="inputwidth">
+                    <p>serving-time</p>
+                    <input type="int" class="inputwidth" name = 'time'>
                 </div>
                 <div class="tinydiv">
                     <p>주소</p>
-                    <input type="text" class="inputwidth">
+                    <input type="text" class="inputwidth" name = 'address'>
                 </div>
                 <div>  
                     <button>등록</button>
                 </div>
             </div>
             </form>
+            </div>
         </div>
+    
     <div class="buttondiv">
-        <button class="buttonposition">카페등록</button>
+        <button class="buttonposition" onclick="toggle()">카페등록</button>
     </div>
 </header>
       
@@ -115,5 +119,11 @@ Ut ut qui et aliqua ex laboris. Ad occaecat pariatur id tempor minim ea tempor e
 
         <button class="footerbutton">등록하러 가기</button>
     </footer>
+    <script>
+        function toggle(){
+        toggle=document.getElementById('toggle')
+        toggle.style.display='block'
+        }
+    </script>
 </body>
 </html>
