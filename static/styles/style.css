@@ -1,3 +1,17 @@
+
+html,* {
+    font-family: 'HANAMDAUM';
+}
+
+@font-face {
+    font-family: 'HANAMDAUM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
 .smallheader{
     display:flex;
     justify-content: center;
@@ -83,15 +97,15 @@ button{
 }
 
 .caferank-1{
-margin-right:200px;
+
 }
 
 .caferank-2{
-    margin-right:200px;
+    margin:0 100px 0 100px
 }
 
 .caferank-3{
-    margin-right:200px;
+
 }
 
 .h1style-1{
@@ -139,4 +153,13 @@ margin-right:200px;
 
 main{
     margin-bottom: 200px;
+}
+
+.astyle{
+    width:30px;
+    margin-left:50px;
+    background:blue;
+    color:white;
+    border-radius: 12px;
+    text-decoration: none;
 }
