@@ -53,6 +53,7 @@ def admin():
     return render_template(
         'admin.html'
     )
+## cafe 
 @app.route('/regist/delete/<int:id>', methods =['GET']) # 요청 주소
 def regitst_delete(id):
     sql =  '''
