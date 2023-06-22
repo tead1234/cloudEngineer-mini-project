@@ -9,7 +9,7 @@ db = DatabaseService('127.0.0.1',
             'utf8')
 
 
-@app.route('/') # 요청 주소
+@app.route('/') # 요청 주소git l
 def hello_world(): 
     return 'Hello, World!'
 @app.route('/menu', methods = ['GET', 'POST']) # 요청 주소g
