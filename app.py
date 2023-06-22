@@ -65,7 +65,7 @@ def regitst_delete(id):
     cursor.execute(sql, (id,))
     conn.commit()
     return render_template(
-        'admin.html'
+        'registRequest.html'
     )
 
 
