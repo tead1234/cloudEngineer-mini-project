@@ -22,10 +22,15 @@ html,* {
 .smallheader{
     display:flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-top:40px;
+    
     
     
 
+}
+
+.buttonmargin{
+    margin-bottom:30px;
 }
 .smallheader1{
     display:none;
@@ -186,7 +191,7 @@ main{
 }
 
 main{
-    background:#FF8C00;
+    
     margin:0;
     padding:0;
 }
@@ -197,7 +202,6 @@ main{
 
 footer{
     height:200px;
-    background-color:bisque;
     margin:0;
     padding:0
 }
