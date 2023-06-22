@@ -55,12 +55,26 @@ def menu():
       
           
           sql = '''
-                insert into menu1 (menu_id, name) values (null, %s)
+            insert into menu1 (menu_id, name) values (null, %s)
           '''
           print(name)
           
           cursor.execute(sql,(menu))
           conn.commit()
+          menuIDsql =  '''
+            select menu_id from menu1 where name = %s
+          '''
+          cursor.execute(menuIDsql, (menu,))
+          menuID = cursor.fetchone()[0]
+          cafeIDsql =  '''
+            select menu_id from menu1 where name = %s
+          '''
+          sql2 = '''
+            insert into cafe_menu(cafe_menu_id,cafe_id,menu_id)
+            values(null, %s,%s)
+            '''
+          cursor.execute(sql2, (menuID))
+
 
           
 
