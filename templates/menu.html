@@ -98,19 +98,20 @@
 </head>
 <body>
     <div class="mytitle">
-        <h1>발표는 지은이</h1>
+        <h1>커피사줘</h1>
         <select class="cafe-select" id="cafe">
-            <option selected>-- 카페 선택하기 --</option>
-            <option>양재역 스타벅스</option>
-            <option>양재역 바나프레소</option>
-            <option>양재역 커피빈</option>
             
+            <option selected>-- 카페 선택하기 --</option>
+            
+            {% for name in names %}
+            <option >{{name}}</option>           
+            {%endfor%}
         </select>
         <button onclick="open_box()">메뉴 리뷰하기</button>
     </div>
     <div class="mypost" id="post-box">
         <div class="form-floating mb-3">
-            <input id="url" type="email" class="form-control" placeholder="">
+            <input id="" type="" class="form-control" placeholder="">
             <label>메뉴</label>
         </div>
         <div class="form-floating mb-3">
@@ -145,7 +146,7 @@
             <label for="floatingTextarea2">코멘트</label>
         </div>
         <div class="mybtns">
-            <button onclick="posting()" type="button" class="btn btn-dark">기록하기</button>
+            <button onclick="posting()" type="button" class="btn btn-dark">리뷰남기기</button>
             <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
         </div>
     </div>
