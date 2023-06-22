@@ -1,6 +1,9 @@
 
 html,* {
     font-family: 'HANAMDAUM';
+    box-sizing: border-box;
+    padding:0px;
+    margin:0px;
 }
 
 @font-face {
@@ -15,18 +18,25 @@ html,* {
 .smallheader{
     display:flex;
     justify-content: center;
-    margin-bottom: 30px;
+    align-items: center;
+    margin-bottom:50px;
+    max-width:1000px;
+    
     
     
 
 }
 .smallheader1{
     display:none;
+    
 }
 .tinydiv{
     margin-left:20px;
     
+    
+    
 }
+
 
 .tinydiv-1{
     margin-left:30px;
@@ -50,7 +60,7 @@ button{
 }
 
 .bigdiv{
-    margin-top:40px;
+    
     border:1px solid black;
     width:75%;
 }
@@ -74,6 +84,7 @@ button{
 .buttonposition{
     margin-top:0px;
     margin-bottom:90px;
+    animation:race2 3s;
 }
 .inputwidth{
     width:80px;
@@ -83,6 +94,7 @@ button{
 .h1style{
     font-size:40px;
     margin-left:70px;
+    padding-top:30px;
 }
 
 .pname2{
@@ -94,6 +106,7 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: race 4s
 }
 
 .caferank-1{
@@ -118,6 +131,8 @@ button{
 }
 
 .rankdiv1{
+    margin-top:50px;
+    margin-bottom:30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,16 +150,19 @@ button{
 
 .rankdiv-1{
     margin-left:60px;
+    animation: race 3s
 }
 
 .pname3{
     margin-left:50px;
     font-size:20px;
+    margin-bottom:20px;
     
 }
 .pname4{
     margin-left: 50px;
     font-size:15px;
+    margin-bottom: 20px;
 }
 
 .footerbutton{
@@ -162,4 +180,38 @@ main{
     color:white;
     border-radius: 12px;
     text-decoration: none;
+}
+
+.img{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+    z-index: 99999999;
+}
+
+main{
+    background-color: #B8860B;
+    height:700px
+}
+
+header{
+    background-color: #E9967A;
+    height:400px;
+}
+
+@keyframes race {
+    from{transform: translateX(-100px);}
+    to{transform: translateX(0px)}
+    
+}
+
+@keyframes race2{
+    from{transform: translateY(-200px);}
+    to{transform:translateY(0px)}
+}
+
+footer{
+    
+    height:200px;
+    
 }
