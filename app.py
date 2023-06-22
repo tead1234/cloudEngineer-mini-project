@@ -17,6 +17,18 @@ def menu():
     return render_template(
         'menu.html'
     )
+@app.route('/admin', methods =['GET', 'POST']) # 요청 주소
+def admin():
+    return render_template(
+        'admin.html'
+    )
+@app.route('/registRequest', methods =['GET', 'POST']) # 요청 주소
+def regist():
+    return render_template(
+        'registRequest.html'
+    )
+
+
 @app.route('/index', methods =['GET', 'POST']) # 요청 주소
 def index():
     ## post 
@@ -24,13 +36,29 @@ def index():
         
         form = request.form
         cafeName = form['cafe-name']
+        cafeAddr = form['address']
+        atmo = form['atmospher']
+        table = form['tableCnt']
+        time = form['time']
+
         sql = '''
             insert into cafe (id, name,address)
-            values(null, %s, null)
+            values(null, %s, %s)
         '''
         conn = db.getConn()
         cursor = db.getCursor()
-        cursor.execute(sql,(cafeName))
+        cursor.execute(sql,(cafeName, cafeAddr))
+        searchSql = '''
+            select id from cafe where name = %s
+        '''
+        cafe_id = str(cursor.execute(searchSql,(cafeName)))
+
+        sql = '''
+            insert into service (id,atmosphere, tableCnt, service_time,cafe_id)
+            values(null, %s, %s, %s, %s)
+        '''
+        cursor.execute(sql,(atmo, table, time, cafe_id))
+        
         conn.commit()
         cursor.close()
         conn.close()
