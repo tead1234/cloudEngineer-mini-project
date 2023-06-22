@@ -54,15 +54,19 @@
 <body>
   <div class="container">
     <h1>Request 게시판</h1>
-    
-    <ul id="sqlList" class="sql-list"></ul>
+
+    <ul id="sqlList" class="sql-list">
+        {% for item in l %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
   </div>
 
   <script>
     // JavaScript 코드
     const sqlForm = document.getElementById('sqlForm');
-    const sqlList = document.getElementById('sqlList');
-
+    // const jsonL = JSON.parse('{{l}}');
+    // console.log(jsonL);
     sqlForm.addEventListener('submit', function(event) {
       event.preventDefault(); // 폼 제출 기본 동작 막기
 

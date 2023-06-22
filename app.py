@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from databaseService import DatabaseService
 app = Flask(__name__) # 초기화
 ## db 
@@ -24,8 +24,22 @@ def admin():
     )
 @app.route('/registRequest', methods =['GET', 'POST']) # 요청 주소
 def regist():
+    sql =  '''
+        select * from cafe left join 
+        service
+        on cafe.id = service.cafe_id
+    
+    '''
+    conn = db.getConn()
+    cursor = db.getCursor()
+    cursor.execute(sql)
+    res = cursor.fetchall()
+    print('res', res)
+    l  = [list(r) for r in res]
+    # print(l)
     return render_template(
-        'registRequest.html'
+        'resgistRequest.html',
+        l = jsonify(l).json
     )
 
 
@@ -60,8 +74,8 @@ def index():
         cursor.execute(sql,(atmo, table, time, cafe_id))
         
         conn.commit()
-        cursor.close()
-        conn.close()
+        # cursor.close()
+        # conn.close()
         
         return render_template(
             'index.html'
