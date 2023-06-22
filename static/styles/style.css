@@ -1,6 +1,9 @@
 
 html,* {
     font-family: 'HANAMDAUM';
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
 }
 
 @font-face {
@@ -10,7 +13,11 @@ html,* {
     font-style: normal;
 }
 
-
+.img{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+}
 
 .smallheader{
     display:flex;
@@ -63,7 +70,7 @@ button{
 
 .pname1{
     margin-left:40px;
-    margin-bottom: 180px;
+    margin-bottom: 50px;
     margin-right:40px;
     width:70px;
     font-weight: bold;
@@ -74,7 +81,7 @@ button{
 .buttonposition{
     margin-top:0px;
     margin-bottom:90px;
-}
+    animation:race4 3s}
 .inputwidth{
     width:80px;
     height:30px;
@@ -83,10 +90,12 @@ button{
 .h1style{
     font-size:40px;
     margin-left:70px;
+    padding-top:40px;
 }
 
 .pname2{
     margin-left:70px;
+    margin-top:40px;
 }
 
 .caferank{
@@ -94,34 +103,38 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: race2 3s;
 }
 
 .caferank-1{
-
+    animation:race2 3s
 }
 
 .caferank-2{
-    margin:0 100px 0 100px
-}
-
-.caferank-3{
+    margin:0 100px 0 100px;
+    animation:race3 3s
 
 }
+
+
 
 .h1style-1{
     text-align: center;
-    margin-top:100px
+    margin-top:100px;
+    margin-bottom:30px;
 }
 
 .h2style{
     text-align: center;
+    margin-bottom:30px;
 }
 
 .rankdiv1{
     display: flex;
     align-items: center;
     justify-content: center;
-   
+    padding-bottom:40px;
+    animation:race 3s;
 
 }
 
@@ -129,22 +142,26 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
-   
+    
+    animation:race 5s;
 
 }
 
 .rankdiv-1{
     margin-left:60px;
+    
 }
 
 .pname3{
     margin-left:50px;
     font-size:20px;
-    
+    padding-bottom:30px;
+    padding-top:30px;
 }
 .pname4{
     margin-left: 50px;
     font-size:15px;
+    padding-bottom:30px;
 }
 
 .footerbutton{
@@ -153,6 +170,7 @@ button{
 
 main{
     margin-bottom: 200px;
+    height:700px;
 }
 
 .astyle{
@@ -162,4 +180,49 @@ main{
     color:white;
     border-radius: 12px;
     text-decoration: none;
+}
+.headerdiv{
+    background: #BB860B;
+}
+
+main{
+    background:#FF8C00;
+    margin:0;
+    padding:0;
+}
+
+.admin{
+    margin-bottom:20px;
+}
+
+footer{
+    height:200px;
+    background-color:bisque;
+    margin:0;
+    padding:0
+}
+@keyframes race {
+    from{transform: translateX(-300px)}
+    to{
+        transform: translateX(0);
+    }
+}
+
+@keyframes race2{
+    from{transform: translateX(300px)}
+    to{
+        transform:translateX(0)
+    }
+}
+
+@keyframes race3{
+    from{transform: translateY(300px);}
+    to{
+        transform:translateY(0px)
+    }
+}
+
+@keyframes race4{
+    from{transform:translateY(-100px)}
+    to{transform:translateY(0px)}
 }
