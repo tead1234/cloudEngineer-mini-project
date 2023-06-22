@@ -11,7 +11,7 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
    
-    <title>coffe</title>
+    <title>coffee</title>
 
     <style>
         * {
@@ -109,52 +109,54 @@
         </select>
         <button onclick="open_box()">메뉴 리뷰하기</button>
     </div>
-    <div class="mypost" id="post-box">
-        <div class="form-floating mb-3">
-            <input id="" type="" class="form-control" placeholder="">
-            <label>메뉴</label>
+    <form action="./menu" method="post">
+        <div class="mypost" id="post-box" >
+            <div class="form-floating mb-3">
+                <input id="" type="" class="form-control" placeholder="" name="menu">
+                <label>메뉴</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input id="" type="" class="form-control" placeholder="" name="taste">
+                <label>맛</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input id="" type="" class="form-control" placeholder="" name="been">
+                <label>원두</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input id="" type="" class="form-control" placeholder="" name="amount">
+                <label>양</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input id="" type="" class="form-control" placeholder="" name="price">
+                <label>가격</label>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">별점</label>
+                <select class="form-select" id="star" name="rate">
+                    <option selected>-- 선택하기 --</option>
+                    <option value="1">⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                </select>
+            </div>
+            <div class="form-floating">
+                <textarea id="comment" class="form-control" placeholder="" name="cafe-coment" ></textarea>
+                <label for="floatingTextarea2">코멘트</label>
+            </div>
+            <div class="mybtns">
+                <button  type="submit" class="btn btn-dark">리뷰남기기</button>
+                <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
+            </div>
         </div>
-        <div class="form-floating mb-3">
-            <input id="" type="" class="form-control" placeholder="">
-            <label>맛</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input id="" type="" class="form-control" placeholder="">
-            <label>원두</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input id="" type="" class="form-control" placeholder="">
-            <label>양</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input id="" type="" class="form-control" placeholder="">
-            <label>가격</label>
-        </div>
-        <div class="input-group mb-3">
-            <label class="input-group-text" for="inputGroupSelect01">별점</label>
-            <select class="form-select" id="star">
-                <option selected>-- 선택하기 --</option>
-                <option value="1">⭐</option>
-                <option value="2">⭐⭐</option>
-                <option value="3">⭐⭐⭐</option>
-                <option value="4">⭐⭐⭐⭐</option>
-                <option value="5">⭐⭐⭐⭐⭐</option>
-            </select>
-        </div>
-        <div class="form-floating">
-            <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
-            <label for="floatingTextarea2">코멘트</label>
-        </div>
-        <div class="mybtns">
-            <button onclick="posting()" type="button" class="btn btn-dark">리뷰남기기</button>
-            <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
-        </div>
-    </div>
+    </form>
     <div class="mycards">
         <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
             
         </div>
     </div>
-    
+
 </body>
 </html>

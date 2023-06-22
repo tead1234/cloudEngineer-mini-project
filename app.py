@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, redirect, render_template, request, jsonify, url_for
 from databaseService import DatabaseService
 app = Flask(__name__) # 초기화
 ## db 
@@ -30,10 +30,7 @@ def menu():
         names = sum(names, [])
         # print(names)
 
-        sql2 = '''
-            insert into review (taste, bean, rate, amount, price)
-            values(%s, %s, %s, %s, %s)
-        '''
+      
         
         cursor.execute(sql)
         rows = cursor.fetchall()
@@ -41,6 +38,35 @@ def menu():
         return render_template(
             'menu.html' , names=names
         )
+    elif request.method == 'POST':
+          
+          form = request.form
+          menu = form['menu']
+          taste = form['taste']
+          been = form['been']
+          amount = form['amount']
+          price = form['price']
+          rate = form['rate']
+          coment = form['cafe-coment']
+      
+          
+          sql = '''
+                insert into menu1 (menu_id, name) values (null, %s)
+          '''
+
+          conn = db.getConn()
+          cursor = db.getCursor()
+          cursor.execute(sql,(menu))
+          conn.commit()
+
+        #   review_sql = '''
+        #     INSERT INTO review (review_id, taste, been, amount, price, rate, cafe_coment)
+        #     VALUES (null, %s, %s, %s, %s, %s, %s)
+        # '''
+        #   cursor.execute(review_sql, (taste, been, amount, price, rate, coment))
+        #   conn.commit()
+
+          return redirect(url_for('menu'))
 
     else:
         return render_template(
