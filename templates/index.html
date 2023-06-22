@@ -14,27 +14,27 @@
             
             <p class="pname">카페 등록 하기</p>
             <div class="smallheader1" id="toggle">
-            <form>
+            <form action="./index" method="post">
             <div class="smallheader">
                 <div class="tinydiv tinydiv-1">
                     <p>카페 이름</p>
-                    <input type="text" class="inputwidth">
+                    <input type="text" class="inputwidth" name ='cafe-name'>
                 </div>
                 <div class="tinydiv">
                     <p>분위기</p>
-                    <input type="text"class="inputwidth">
+                    <input type="text"class="inputwidth" name ='atmospher'>
                 </div>
                 <div class="tinydiv">
                     <p>테이블 수</p>
-                    <input type="text" class="inputwidth">
+                    <input type="int" class="inputwidth" name ='tableCnt'>
                 </div>
                 <div class="tinydiv">
-                    <p>영업시간</p>
-                    <input type="text" class="inputwidth">
+                    <p>serving-time</p>
+                    <input type="int" class="inputwidth" name = 'time'>
                 </div>
                 <div class="tinydiv">
                     <p>주소</p>
-                    <input type="text" class="inputwidth">
+                    <input type="text" class="inputwidth" name = 'address'>
                 </div>
                 <div>  
                     <button>등록</button>
