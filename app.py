@@ -4,7 +4,7 @@ app = Flask(__name__) # 초기화
 ## db 
 db = DatabaseService('127.0.0.1',
             'root',
-            '1234',
+            'east',
             'cafe_DB',
             'utf8')
 
