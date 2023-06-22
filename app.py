@@ -9,15 +9,43 @@ db = DatabaseService('127.0.0.1',
             'utf8')
 
 
-@app.route('/') # 요청 주소git l
+@app.route('/') # 요청 주소git 
 def hello_world(): 
     return 'Hello, World!'
-@app.route('/menu', methods = ['GET', 'POST']) # 요청 주소g
+
+@app.route('/menu', methods = ['GET', 'POST']) # 요청 주소
 def menu(): 
-    return render_template(
-        'menu.html'
-    )
-@app.route('/admin', methods =['GET', 'POST']) # 요청 주소
+    if request.method == 'GET':
+        conn = db.getConn()
+        cursor = db.getCursor()
+
+        sql = '''
+            SELECT NAME FROM cafe;
+        '''  
+        
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        
+        names = [list(rows[x]) for x in range(len(rows))]
+        names = sum(names, [])
+        # print(names)
+
+        sql2 = '''
+            
+        '''
+        
+
+        return render_template(
+            'menu.html' , names=names
+        )
+
+    else:
+        return render_template(
+            'menu.html'
+            )
+    
+    
+@app.route('/admin', methods = ['GET', 'POST']) # 요청 주소
 def admin():
     return render_template(
         'admin.html'
@@ -41,7 +69,6 @@ def regist():
         'resgistRequest.html',
         l = jsonify(l).json
     )
-
 
 @app.route('/index', methods =['GET', 'POST']) # 요청 주소
 def index():
@@ -86,6 +113,8 @@ def index():
         return render_template(
             'index.html'
         )
+    
+    
 
 if __name__ == '__main__':
     app.run(debug= True)
