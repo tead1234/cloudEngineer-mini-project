@@ -31,9 +31,12 @@ def menu():
         # print(names)
 
         sql2 = '''
-            
+            insert into review (taste, bean, rate, amount, price)
+            values(%s, %s, %s, %s, %s)
         '''
         
+        cursor.execute(sql)
+        rows = cursor.fetchall()
 
         return render_template(
             'menu.html' , names=names
