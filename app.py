@@ -29,12 +29,9 @@ def menu():
         
         names = [list(rows[x]) for x in range(len(rows))]
         names = sum(names, [])
-        # print(names)
+        print(names)
 
       
-        
-        cursor.execute(sql)
-        rows = cursor.fetchall()
 
         return render_template(
             'menu.html' , names=names
@@ -52,28 +49,32 @@ def menu():
           price = form['price']
           rate = form['rate']
           coment = form['cafe-coment']
-      
-          
+          print(menu)
+          print('wjatn', rate)
           sql = '''
             insert into menu1 (menu_id, name) values (null, %s)
           '''
-          print(name)
           
-          cursor.execute(sql,(menu))
+          
+          cursor.execute(sql,(menu,))
           conn.commit()
           menuIDsql =  '''
             select menu_id from menu1 where name = %s
           '''
           cursor.execute(menuIDsql, (menu,))
           menuID = cursor.fetchone()[0]
+          print('name',name)
           cafeIDsql =  '''
-            select menu_id from menu1 where name = %s
+            select id from cafe where name = %s
           '''
+          cursor.execute(cafeIDsql, (name,))
+          cafeID = cursor.fetchone()[0]
+          print(cafeID)
           sql2 = '''
             insert into cafe_menu(cafe_menu_id,cafe_id,menu_id)
             values(null, %s,%s)
             '''
-          cursor.execute(sql2, (menuID))
+          cursor.execute(sql2, (cafeID, menuID,))
 
 
           
@@ -84,6 +85,18 @@ def menu():
         #     '''
         #   cursor.execute(review_sql, (taste, been, amount, price, rate, coment))
         #   conn.commit()
+
+          cafe_menu_IDsql =  '''
+            select cafe_menu_id from cafe_menu where cafe_id = %s and menu_id = %s
+          '''
+          cursor.execute(cafe_menu_IDsql, (cafeID, menuID,))
+          cafe_menu_id = cursor.fetchone()[0]
+          review_sql = '''
+            INSERT INTO review (cafe_menu_id, review_id, taste, bean, amount, price, rate)
+             VALUES (%s,null, %s, %s, %s, %s, %s)
+         '''
+          cursor.execute(review_sql, (cafe_menu_id,taste, been, amount, price, rate,))
+          conn.commit()
 
           return redirect(url_for('menu'))
 
