@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, request, jsonify, url_for
 from databaseService import DatabaseService
 app = Flask(__name__) # 초기화
+
 ## db 
 db = DatabaseService('127.0.0.1',
             'root',
@@ -39,8 +40,11 @@ def menu():
             'menu.html' , names=names
         )
     elif request.method == 'POST':
-          
+          conn = db.getConn()
+          cursor = db.getCursor()
+
           form = request.form
+          name = form['name']
           menu = form['menu']
           taste = form['taste']
           been = form['been']
@@ -53,16 +57,17 @@ def menu():
           sql = '''
                 insert into menu1 (menu_id, name) values (null, %s)
           '''
-
-          conn = db.getConn()
-          cursor = db.getCursor()
+          print(name)
+          
           cursor.execute(sql,(menu))
           conn.commit()
+
+          
 
         #   review_sql = '''
         #     INSERT INTO review (review_id, taste, been, amount, price, rate, cafe_coment)
         #     VALUES (null, %s, %s, %s, %s, %s, %s)
-        # '''
+        #     '''
         #   cursor.execute(review_sql, (taste, been, amount, price, rate, coment))
         #   conn.commit()
 
