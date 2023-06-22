@@ -39,6 +39,9 @@
                 <div>  
                     <button>등록</button>
                 </div>
+                <div>
+                    <button id="closebutton" onclick="close()">close</button>
+                </div>
             </div>
             </form>
             </div>
@@ -117,12 +120,19 @@ Ut ut qui et aliqua ex laboris. Ad occaecat pariatur id tempor minim ea tempor e
         <p class="pname3">카페 메뉴 리뷰하기</p>
         <p class="pname4">리뷰하고 싶은 카페를 선택하고 메뉴를 등록한 후 평점을 부여해주세요</p>
 
-        <button class="footerbutton">등록하러 가기</button>
+        <a href="/menu" class="astyle">register</a>
     </footer>
+    
     <script>
+        
         function toggle(){
         toggle=document.getElementById('toggle')
         toggle.style.display='block'
+        }
+        function close(){
+        toggle=document.getElementById('toggle')
+        toggle.style.display="none"
+        
         }
     </script>
 </body>
