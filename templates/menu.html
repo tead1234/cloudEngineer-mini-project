@@ -97,11 +97,12 @@
 
 </head>
 <body>
+    
     <div class="mytitle">
         <h1>커피사줘</h1>
-        <select class="cafe-select" id="cafe">
+        <select class="cafe-select" id="cafe" >
             
-            <option selected>-- 카페 선택하기 --</option>
+            <option selected>-- 카페 리뷰보기 --</option>
             
             {% for name in names %}
             <option >{{name}}</option>           
@@ -111,6 +112,15 @@
     </div>
     <form action="./menu" method="post">
         <div class="mypost" id="post-box" >
+            
+            <select class="cafe-select" id="cafe"  name="name">
+            
+                <option selected>-- 카페 선택하기 --</option>
+                
+                {% for name in names %}
+                <option >{{name}}</option>           
+                {%endfor%}
+            </select>
             <div class="form-floating mb-3">
                 <input id="" type="" class="form-control" placeholder="" name="menu">
                 <label>메뉴</label>
