@@ -198,9 +198,7 @@ def regist():
 
 @app.route('/index', methods =['GET', 'POST']) # 요청 주소
 def index():
-    ## post 
     if request.method == 'POST':
-        
         form = request.form
         cafeName = form['cafe-name']
         cafeAddr = form['address']
@@ -212,6 +210,7 @@ def index():
             insert into cafe (id, name,address)
             values(null, %s, %s)
         '''
+
         conn = db.getConn()
         cursor = db.getCursor()
         cursor.execute(sql,(cafeName, cafeAddr))
@@ -245,4 +244,4 @@ def index():
     
 
 if __name__ == '__main__':
-    app.run(debug= True)
+    app.run(debug=True)
