@@ -53,13 +53,28 @@ def admin():
     return render_template(
         'admin.html'
     )
+@app.route('/regist/delete/<int:id>', methods =['GET']) # 요청 주소
+def regitst_delete(id):
+    sql =  '''
+        delete from cafe
+        where id = %s
+    '''
+    conn = db.getConn()
+    cursor = db.getCursor()
+    cursor.execute(sql, (id,))
+    conn.commit()
+    return render_template(
+        'admin.html'
+    )
+
+
 @app.route('/registRequest', methods =['GET', 'POST']) # 요청 주소
 def regist():
     sql =  '''
-        select * from cafe left join 
+        select * from cafe join 
         service
         on cafe.id = service.cafe_id
-    
+        
     '''
     conn = db.getConn()
     cursor = db.getCursor()
@@ -67,7 +82,9 @@ def regist():
     res = cursor.fetchall()
     print('res', res)
     l  = [list(r) for r in res]
-    # print(l)
+    # for i in l:
+    #     i[0] = f'[ id : {i[0]} ]'
+    print(l)
     return render_template(
         'resgistRequest.html',
         l = jsonify(l).json
@@ -92,11 +109,12 @@ def index():
         conn = db.getConn()
         cursor = db.getCursor()
         cursor.execute(sql,(cafeName, cafeAddr))
+        conn.commit()
         searchSql = '''
             select id from cafe where name = %s
         '''
-        cafe_id = str(cursor.execute(searchSql,(cafeName)))
-
+        cursor.execute(searchSql,(cafeName, ))
+        cafe_id = cursor.fetchone()[0]
         sql = '''
             insert into service (id,atmosphere, tableCnt, service_time,cafe_id)
             values(null, %s, %s, %s, %s)

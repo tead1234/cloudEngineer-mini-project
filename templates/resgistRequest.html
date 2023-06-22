@@ -57,7 +57,10 @@
 
     <ul id="sqlList" class="sql-list">
         {% for item in l %}
-        <li>{{ item }}</li>
+        <li>
+            {{ item }}
+            <a onclick="deleteReq({{ item[0] }})">삭제</a>
+        </li>
       {% endfor %}
     </ul>
   </div>
@@ -80,6 +83,11 @@
       // 입력 필드 초기화
       document.getElementById('sqlText').value = '';
     });
+
+    function deleteReq(id){
+        window.location.href = `regist/delete/${id}`;
+    }
+
   </script>
 </body>
 </html>
