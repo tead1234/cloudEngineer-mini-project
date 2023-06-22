@@ -206,7 +206,7 @@ header{
 }
 
 @keyframes race2{
-    from{transform: translateY(-200px);}
+    from{transform: translateY(-150px);}
     to{transform:translateY(0px)}
 }
 
