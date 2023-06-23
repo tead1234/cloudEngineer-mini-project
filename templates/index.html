@@ -11,10 +11,10 @@
         <img src="../static/img/coffee33.png" class="img">
         <p class="pname1">커피사줘<p>
         
-        <div class="bigdiv">
+        <div class="bigdiv" >
             
             
-            <div class="smallheader1" id="toggle">
+            <div class="smallheader1" id="toggle" class="toggle">
             <form action="./index" method="post">
             <div class="smallheader">
                 <div class="tinydiv tinydiv-1">
@@ -41,7 +41,7 @@
                 <button class="buttonmargin">등록</button>
                 </div>
                 <div>
-                    <button id="closebutton" class="buttonmargin" onclick="close()">close</button>
+                    <button id="closebutton" type="button" class="buttonmargin" onclick="close2();">close</button>
                 </div>
             </div>
             </form>
@@ -52,7 +52,7 @@
         <form action="./admin">
             <button type="submit" class="admin">admin</button>
         </form>
-        <button class="buttonposition" onclick="toggle()">카페등록</button>
+        <button class="buttonposition" onclick="toggle();">카페등록</button>
         
     </div>
 </header>
@@ -134,14 +134,12 @@ Ut ut qui et aliqua ex laboris. Ad occaecat pariatur id tempor minim ea tempor e
     <script>
         
         function toggle(){
-            
-        toggle=document.getElementById('toggle')
+        const toggle=document.getElementById('toggle')
         toggle.style.display='block'
         }
-        function close(){
-        toggle=document.getElementById('toggle')
-        toggle.style.display="none"
-        
+        function close2(){
+        const close=document.querySelector('#toggle')
+        close.style.display="none"
         }
     </script>
 </body>
