@@ -241,7 +241,7 @@ def index():
         conn = db.getConn()
         cursor = db.getCursor()
         getTop3Sql = '''
-            SELECT c.name, avg(r.rate) AS 평균평점
+            SELECT c.name, avg(r.rate), avg(s.service_time), s.atmosphere, avg(s.tableCnt)
             FROM cafe AS c
             JOIN cafe_menu AS cm
             ON c.id = cm.cafe_id
@@ -249,16 +249,20 @@ def index():
             ON cm.menu_id = m.menu_id
             JOIN review AS r
             ON m.menu_id = r.cafe_menu_id
-            GROUP BY c.name HAVING avg(r.rate)
+            JOIN service as s
+            ON c.id = s.cafe_id
+            GROUP BY c.name
             LIMIT 3 
         '''
         cursor.execute(getTop3Sql)
         res = cursor.fetchall()
         ##('bana',321321)
-        L = [r[0] for r in res]
+        L = [[idx+1,r[0],r[2],r[3],r[4]] for idx,r in enumerate(res)]
+        print('L',L)
         return render_template(
             'index.html',
-            top3 = L
+            top3 = L,
+            
         )
         # SELECT m.name AS 메뉴, avg(r.rate) AS 평균평점
         #     FROM cafe AS c
