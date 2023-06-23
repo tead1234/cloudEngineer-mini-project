@@ -196,7 +196,7 @@ def regist():
         l = jsonify(l).json
     )
 
-@app.route('/index', methods =['GET', 'POST']) # 요청 주소
+@app.route('/', methods =['GET', 'POST']) # 요청 주소
 def index():
     ## post 
     if request.method == 'POST':
@@ -253,14 +253,6 @@ def index():
         rows = cursor.fetchall()
         menuranks = [list(rows[m]) for m in range(len(rows))]
         print(menuranks)
-
-        return render_template(
-            'index.html', menuranks = menuranks
-
-        ## sql get result 
-        ## 
-        conn = db.getConn()
-        cursor = db.getCursor()
         getTop3Sql = '''
             SELECT c.name, avg(r.rate), avg(s.service_time), s.atmosphere, avg(s.tableCnt)
             FROM cafe AS c
@@ -269,7 +261,7 @@ def index():
             JOIN menu1 AS m
             ON cm.menu_id = m.menu_id
             JOIN review AS r
-            ON m.menu_id = r.cafe_menu_id
+            ON cm.cafe_menu_id = r.cafe_menu_id
             JOIN service as s
             ON c.id = s.cafe_id
             GROUP BY c.name
@@ -277,14 +269,17 @@ def index():
         '''
         cursor.execute(getTop3Sql)
         res = cursor.fetchall()
+        print('res', res)
         ##('bana',321321)
         L = [[idx+1,r[0],r[2],r[3],r[4]] for idx,r in enumerate(res)]
         print('L',L)
+        
         return render_template(
-            'index.html',
-            top3 = L
-
+            'index.html', menuranks = menuranks, top3 = L
         )
+        ## sql get result 
+        ## 
+        
         # SELECT m.name AS 메뉴, avg(r.rate) AS 평균평점
         #     FROM cafe AS c
         #     JOIN cafe_menu AS cm
