@@ -236,10 +236,29 @@ def index():
         )
 
     else:    
-
-
+        ## sql get result 
+        ## 
+        conn = db.getConn()
+        cursor = db.getCursor()
+        getTop3Sql = '''
+            SELECT c.name, avg(r.rate) AS 평균평점
+            FROM cafe AS c
+            JOIN cafe_menu AS cm
+            ON c.id = cm.cafe_id
+            JOIN menu1 AS m
+            ON cm.menu_id = m.menu_id
+            JOIN review AS r
+            ON m.menu_id = r.cafe_menu_id
+            GROUP BY c.name HAVING avg(r.rate)
+            LIMIT 3 
+        '''
+        cursor.execute(getTop3Sql)
+        res = cursor.fetchall()
+        ##('bana',321321)
+        L = [r[0] for r in res]
         return render_template(
-            'index.html'
+            'index.html',
+            top3 = L
         )
         # SELECT m.name AS 메뉴, avg(r.rate) AS 평균평점
         #     FROM cafe AS c
