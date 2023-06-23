@@ -29,12 +29,53 @@ def menu():
 
       
 
+        selected_cafe = request.args.get('cafe_review')
+        print(selected_cafe)
+        
+        conn = db.getConn()
+        cursor = db.getCursor()
+        
+        
+        select_cafe_sql = '''
+                select id from cafe where name = %s;
+            '''
+
+        cursor.execute(select_cafe_sql, (selected_cafe, ))
+        rows = cursor.fetchone()
+        cafe_id = rows
+        select_review_sql = '''
+            SELECT  m.name, r.taste, r.bean, r.rate, r.amount, r.price  FROM cafe AS c
+            JOIN cafe_menu AS cm
+            ON c.id = cm.cafe_id
+            JOIN menu1 AS m
+            ON cm.menu_id = m.menu_id
+            JOIN review AS r
+            ON cm.cafe_menu_id = r.cafe_menu_id
+            WHERE c.id = %s ;
+        '''
+
+        cursor.execute(select_review_sql, (cafe_id, ))
+        rows = cursor.fetchall()
+        
+        reviews = [list(rows[x]) for x in range(len(rows))]
+        print(reviews)
+
         return render_template(
-            'menu.html' , names=names
+            'menu.html' , names=names, reviews=reviews
         )
     elif request.method == 'POST':
           conn = db.getConn()
           cursor = db.getCursor()
+          
+        #   selected_cafe = request.form['cafeName']
+
+        #   select_cafe_sql = '''
+        #     select id from cafe where name = %s
+        #    '''
+
+        #   cursor.execute(select_cafe_sql, (selected_cafe))
+        #   select_cafe_id = cursor.fetchone()
+        #   print('--------------',select_cafe_id)
 
           form = request.form
           name = form['name']
@@ -44,7 +85,7 @@ def menu():
           amount = form['amount']
           price = form['price']
           rate = form['rate']
-          coment = form['cafe-coment']
+          # coment = form['cafe-coment']
           
           query = "SELECT COUNT(*) FROM menu1 WHERE name = %s"
           cursor.execute(query, (menu,))
@@ -85,6 +126,7 @@ def menu():
             print("중복된 값이 있습니다.")
         #   cursor.execute(sql2, (cafeID, menuID,))
 
+          
           cafe_menu_IDsql =  '''
             select cafe_menu_id from cafe_menu where cafe_id = %s and menu_id = %s
           '''
@@ -106,6 +148,8 @@ def menu():
            print("중복된 값이 있습니다.")
 
           return redirect(url_for('menu'))
+
+
 
     else:
         return render_template(
