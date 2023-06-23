@@ -68,6 +68,7 @@ button {
     cursor: pointer;
 
 
+
 }
 
 .bigdiv {
@@ -190,7 +191,9 @@ button {
 
 main {
     margin-bottom: 200px;
+
     height: 1100px;
+
 }
 
 .astyle {
@@ -223,10 +226,12 @@ main {
     margin-bottom: 20px;
 }
 
-footer {
-    height: 200px;
-    margin: 0;
-    padding: 0
+
+footer{
+    height:250px;
+    margin:0;
+    padding:0
+
 }
 
 @keyframes race {
@@ -269,6 +274,38 @@ footer {
     }
 }
 
-header {
-    height: 300px;
+header{
+    height:400px;
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
 }
+
+.btncolor{
+    background-color: #c99d63;
+    border-radius: 50%;
+    width:100px;
+    height:100px;
+}
+
+.modal{
+    margin-top:50px;
+    
+   
+}
+
+div .modal-dialog{
+  
+    margin-right:680px;
+    
+    
+    
+}
+div .modal-content{
+    width:700px;
+    height:500px;
+    border-radius: 5%;
+    background-color: #c99d63;
+}
+
+

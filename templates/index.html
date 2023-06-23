@@ -11,8 +11,6 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-   
-
 </head>
 <body>
     <header class="headerdiv">
@@ -49,7 +47,9 @@
                 <button class="btn btn-outline-dark">등록</button>
                 </div>
                 <div>
+
                     <button id="closebutton" type="button" class="btn btn-outline-dark ms-1" onclick="close2();">close</button>
+
                 </div>
             </div>
             </form>
@@ -58,9 +58,11 @@
     
     <div class="buttondiv">
         <form action="./admin">
+
             <button type="submit" class="btn btn-outline-dark mb-1">admin</button>
         </form>
         <button class="btn btn-outline-dark" onclick="toggle();">카페등록</button>
+
         
     </div>
 </header>
@@ -73,28 +75,33 @@
 
         </p>    
         <div class="caferank">
+            {% for item in top3 %}
             <div class="caferank-1">
-                <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal">
-                    cafeRanks.0.0</button>
-                <div class="modal" id="myModal">
+
+                <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal{{item[0]}}">
+                    Rank{{item[0]}}</button>
+                <div class="modal" id="myModal{{item[0]}}">
                     <div class="modal-dialog">
                       <div class="modal-content">
                   
                         <!-- Modal Header -->
                         <div class="modal-header">
-                          <h4 class="modal-title">cafeRanks.0.0</h4>
+
+                          <h4 class="modal-title">{{item[1]}}</h4>
+
                           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                   
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <p>분위기 : </p>
+
+                            <p>분위기 : {{item[3]}}</p>
                             <hr>
-                            <p>테이블수 :</p>
+                            <p>테이블수 : {{item[4]}}</p>
                             <hr>
-                            <p>서비스타임 : </p>
+                            <p>서비스타임 : {{item[2]}}</p>
                             <hr>
-                            <p>추천메뉴 : </p>
+                            <p>추천메뉴</p>
                         </div>
                   
                         <!-- Modal footer -->
@@ -105,83 +112,9 @@
                       </div>
                     </div>
                   </div>
+
              </div>
-            <div class="caferank-2">
-                
-                <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal">
-                    rank2
-                  </button>
-                  
-                  <!-- The Modal -->
-                  <div class="modal" id="myModal">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                  
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                          <h4 class="modal-title">Modal Heading</h4>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                  
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <p>분위기</p>
-                            <hr>
-                            <p>테이블수</p>
-                            <hr>
-                            <p>서비스타임</p>
-                            <hr>
-                            <p>추천메뉴</p>
-                        </div>
-                  
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                  
-                      </div>
-                    </div>
-                  </div>
-                  
-            </div>
-            <div class="caferank-3">
-                
-                <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal">
-                    rank3
-                  </button>
-                  
-                  <!-- The Modal -->
-                  <div class="modal" id="myModal">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                  
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                          <h4 class="modal-title">Modal Heading</h4>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                  
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <p>분위기</p>
-                            <hr>
-                            <p>테이블수</p>
-                            <hr>
-                            <p>서비스타임</p>
-                            <hr>
-                            <p>추천메뉴</p>
-                        </div>
-                  
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                        </div>
-                  
-                      </div>
-                    </div>
-                  </div>
-                  
-            </div>
+             {% endfor %}
         </div>
         
         <h1 class="h1style-1">메뉴 평점</h1>
