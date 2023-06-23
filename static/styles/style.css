@@ -18,7 +18,14 @@ html,
     width: 250px;
     height: 250px;
     /* border-radius: 50%; */
-    margin-right: 60px;
+    margin-right: 70px;
+}
+
+.img2 {
+    width: 150px;
+    height: 150px;
+    /* border-radius: 50%; */
+    margin-left: 45%;
 }
 
 .smallheader {
@@ -111,6 +118,8 @@ button {
     font-size: 40px;
     margin-left: 70px;
     padding-top: 40px;
+
+
 }
 
 .pname2 {
@@ -127,7 +136,8 @@ button {
 }
 
 .caferank-1 {
-    animation: race2 3s
+    animation: race2 3s;
+    margin: 15px;
 }
 
 .caferank-2 {
@@ -138,9 +148,10 @@ button {
 
 
 .h1style-1 {
-    text-align: center;
+    text-align: left;
     margin-top: 100px;
     margin-bottom: 30px;
+    margin-left: 70px;
 }
 
 .h2style {
@@ -174,14 +185,14 @@ button {
 
 .pname3 {
     margin-left: 50px;
-    font-size: 20px;
+    font-size: 30px;
     padding-bottom: 30px;
     padding-top: 30px;
 }
 
 .pname4 {
     margin-left: 50px;
-    font-size: 15px;
+    font-size: 20px;
     padding-bottom: 30px;
 }
 
@@ -205,16 +216,16 @@ main {
     text-decoration: none;
 }
 
-.headerdiv {
-    /* background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)),url('https://64.media.tumblr.com/476bb112282a3ef7f7396de26f3d1b60/tumblr_pd8427dWCU1qbw2q1o1_1280.gifv');
+ /*.headerdiv {
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)),url('https://64.media.tumblr.com/476bb112282a3ef7f7396de26f3d1b60/tumblr_pd8427dWCU1qbw2q1o1_1280.gifv');
     background-position: center;
     background-size:  auto;
     background-position-x: left;
     background-attachment: local;
-         */
+        
 
 
-}
+} */
 
 main {
 
@@ -282,9 +293,9 @@ header{
 }
 
 .btncolor{
-    background-color: #c99d63;
-    border-radius: 50%;
-    width:100px;
+    background-color: #ffffff;
+    font-size:30px;
+    width:150px;
     height:100px;
 }
 
@@ -296,7 +307,7 @@ header{
 
 div .modal-dialog{
   
-    margin-right:680px;
+    margin-right:40%;
     
     
     
@@ -305,7 +316,7 @@ div .modal-content{
     width:700px;
     height:500px;
     border-radius: 5%;
-    background-color: #c99d63;
+    background-color: #ffffff;
 }
 
 

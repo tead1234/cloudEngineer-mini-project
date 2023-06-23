@@ -72,15 +72,17 @@
     <main>
         <h1 class="h1style">카페 랭킹 Top3</h1>
         <p class="pname2">
-
+            <img src="" class="img2"> 
         </p>    
         <div class="caferank">
             {% for item in top3 %}
             <div class="caferank-1">
 
                 <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal{{item[0]}}">
-                    Rank{{item[0]}}</button>
+                    {{item.1}}</button>
+                    
                 <div class="modal" id="myModal{{item[0]}}">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/eb7bdb101533773.5f2100de4af23.gif" class="img2"> 
                     <div class="modal-dialog">
                       <div class="modal-content">
                   
@@ -97,11 +99,11 @@
 
                             <p>분위기 : {{item[3]}}</p>
                             <hr>
-                            <p>테이블수 : {{item[4]}}</p>
+                            <p>테이블수 : {{item[4]}} 개</p>
                             <hr>
-                            <p>서비스타임 : {{item[2]}}</p>
+                            <p>서비스타임 : {{item[2]}} 분</p>
                             <hr>
-                            <p>추천메뉴</p>
+                            <p>추천메뉴 : {{menuranks.0.0}}, {{menuranks.1.0}}</p>
                         </div>
                   
                         <!-- Modal footer -->
@@ -117,27 +119,16 @@
              {% endfor %}
         </div>
         
-        <h1 class="h1style-1">메뉴 평점</h1>
-        <h2 class="h2style">메뉴별 평점</h2>
-       <div class="rankdiv1">
+        <h1 class="h1style-1">메뉴 순위</h1>
         
+       <div class="rankdiv1">
+        {%for rank in menuranks %}
             <div class="rankdiv-1">
-                <p>1위 : {{menuranks[0]}}</p>
+                <p>{{loop.index}} : {{rank.0}}</p>
                 <img src="" alt="이미지">
             </div>
-             <div class="rankdiv-1">
-                <p>1위 : {{menuranks[0]}}</p>
-                <img src="" alt="이미지">
-            </div>
-            <div class="rankdiv-1">
-                <p>1위 : {{menuranks[0]}}</p>
-                <img src="" alt="이미지">
-            </div>
-            <div class="rankdiv-1">
-                <p>1위 : {{menuranks[0]}}</p>
-                <img src="" alt="이미지">
-            </div> 
-       
+            
+       {%endfor%}
         </div>
         
         <p></p>

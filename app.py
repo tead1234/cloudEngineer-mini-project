@@ -254,7 +254,7 @@ def index():
         menuranks = [list(rows[m]) for m in range(len(rows))]
         print(menuranks)
         getTop3Sql = '''
-            SELECT c.name, avg(r.rate), avg(s.service_time), s.atmosphere, avg(s.tableCnt)
+            SELECT c.name, avg(r.rate), round(avg(s.service_time),0), s.atmosphere, round(avg(s.tableCnt), 0)
             FROM cafe AS c
             JOIN cafe_menu AS cm
             ON c.id = cm.cafe_id
