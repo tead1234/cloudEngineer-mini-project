@@ -10,10 +10,6 @@ db = DatabaseService('127.0.0.1',
             'utf8')
 
 
-@app.route('/') # 요청 주소git 
-def hello_world(): 
-    return 'Hello, World!'
-
 @app.route('/menu', methods = ['GET', 'POST']) # 요청 주소
 def menu(): 
     if request.method == 'GET':
@@ -29,12 +25,9 @@ def menu():
         
         names = [list(rows[x]) for x in range(len(rows))]
         names = sum(names, [])
-        # print(names)
+        print(names)
 
       
-        
-        cursor.execute(sql)
-        rows = cursor.fetchall()
 
         selected_cafe = request.args.get('cafe_id')
         print(selected_cafe)
@@ -74,46 +67,54 @@ def menu():
           price = form['price']
           rate = form['rate']
           coment = form['cafe-coment']
-      
           
-          sql = '''
-                insert into menu1 (menu_id, name) values (null, %s)
-          '''
+          query = "SELECT COUNT(*) FROM menu1 WHERE name = %s"
+          cursor.execute(query, (menu,))
+          count = cursor.fetchone()[0]
+        ## insert menu
+          if count == 0:
+    # 중복된 값이 없는 경우에만 INSERT 문 실행
+            insert_query = "INSERT INTO menu1 (menu_id, name) VALUES (null, %s)"
+            cursor.execute(insert_query, (menu,))
+            conn.commit()
+          else:
+            print("중복된 값이 있습니다.")
+          print('menu', menu)
           
-          
-          cursor.execute(sql,(menu))
-          conn.commit()
-
-          cafe_name_sql = '''
-                select id from cafe where name = %s
-          '''
-          
-          cursor.execute(cafe_name_sql, (name))
-          cafe_id = cursor.fetchone()
-
+         
           menu_id_sql = '''
                 select menu_id from menu1 where name = %s
             '''
-          cursor.execute(menu_id_sql,(menu))
-          menu_id = cursor.fetchone()
-        
-          print(f'------------{menu_id}-')
-
-          cafe_menu_sql = '''
-             insert into cafe_menu (cafe_id, cafe_menu_id, menu_id)
-             values (%s, %s, %s)
+          cursor.execute(menu_id_sql,(menu,))
+          menuID = cursor.fetchone()[0]
+          print('name',name)
+          cafeIDsql =  '''
+            select id from cafe where name = %s
           '''
-          cafe_menu_id = int(cafe_id[0])+int(menu_id[0])
+          cursor.execute(cafeIDsql, (name,))
+          cafeID = cursor.fetchone()[0]
+          print(cafeID)
+          query = "SELECT COUNT(*) FROM cafe_menu WHERE cafe_id = %s AND menu_id = %s"
+          cursor.execute(query, (cafeID, menuID))
+          count = cursor.fetchone()[0]
 
-          cursor.execute(cafe_menu_sql,(cafe_id, cafe_menu_id, menu_id ))
-          conn.commit()
+          if count == 0:
+    # 중복된 값이 없는 경우에만 INSERT 문 실행
+            insert_query = "INSERT INTO cafe_menu (cafe_menu_id, cafe_id, menu_id) VALUES (null, %s, %s)"
+            cursor.execute(insert_query, (cafeID, menuID))
+            conn.commit()
+          else:
+            print("중복된 값이 있습니다.")
+        #   cursor.execute(sql2, (cafeID, menuID,))
 
-          review_sql = ''' 
-            INSERT INTO review (menu_id, review_id,  taste, bean, amount, price, rate)
-            VALUES (%s, null,  %s, %s, %s, %s, %s)
-            '''
-          cursor.execute(review_sql, (menu_id, taste, been, amount, price, rate))
-          conn.commit()
+          
+
+        #   review_sql = '''
+        #     INSERT INTO review (review_id, taste, been, amount, price, rate, cafe_coment)
+        #     VALUES (null, %s, %s, %s, %s, %s, %s)
+        #     '''
+        #   cursor.execute(review_sql, (taste, been, amount, price, rate, coment))
+        #   conn.commit()
 
 
          
