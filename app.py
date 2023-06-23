@@ -241,6 +241,19 @@ def index():
         return render_template(
             'index.html'
         )
+        # SELECT m.name AS 메뉴, avg(r.rate) AS 평균평점
+        #     FROM cafe AS c
+        #     JOIN cafe_menu AS cm
+        #     ON c.id = cm.cafe_id
+        #     JOIN menu1 AS m
+        #     ON cm.menu_id = m.menu_id
+        #     JOIN review AS r
+        #     ON m.menu_id = r.cafe_menu_id
+        #     GROUP BY m.name HAVING avg(r.rate)
+        #     ORDER BY AVG(r.rate) desc
+        #     LIMIT 5 ;
+        
+        # )
     
     
 
