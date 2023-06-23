@@ -59,7 +59,7 @@
         {% for item in l %}
         <li>
             {{ item }}
-            <a onclick="deleteReq('{{item[0]}}')">삭제</a>
+            <a onclick="deleteReq({{ item[0] }})">삭제</a>
         </li>
       {% endfor %}
     </ul>

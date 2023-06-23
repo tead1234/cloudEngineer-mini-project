@@ -11,3 +11,17 @@ class DatabaseService:
     
     def getConn(self):
         return self.conn
+    
+    def getReviews(self):
+        conn = self.getConn()
+        cursor = self.getCursor()
+
+        sql = '''
+            SELECT * FROM review;
+        '''
+
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        reviews = [dict(row) for row in rows]
+
+        return reviews
