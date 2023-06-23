@@ -1,9 +1,9 @@
-
-html,* {
+html,
+* {
     font-family: 'HANAMDAUM';
     box-sizing: border-box;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     font-family: 'Cafe24Ssurround';
 }
 
@@ -14,228 +14,261 @@ html,* {
     font-style: normal;
 }
 
-.img{
-    width:250px;
-    height:250px;
-    border-radius: 50%;
-    margin-right:60px;
+.img {
+    width: 250px;
+    height: 250px;
+    /* border-radius: 50%; */
+    margin-right: 60px;
 }
 
-.smallheader{
-    display:flex;
+.smallheader {
+    display: flex;
     justify-content: center;
-    margin-top:40px;
-    
-    
-    
+    margin-top: 60px;
+
+
+
 
 }
 
-.buttonmargin{
-    margin-bottom:30px;
-}
-.smallheader1{
-    display:none;
-}
-.tinydiv{
-    margin-left:20px;
-    
+.buttonmargin {
+    margin-bottom: 30px;
 }
 
-.tinydiv-1{
-    margin-left:30px;
+.smallheader1 {
+    display: none;
 }
-.pname{
-    padding-left:50px;
-    
-    font-weight:bolder;
+
+.tinydiv {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    margin-top: auto;
+
 }
-button{
-    height:30px;
-    width:100px;
-    background-color: blue;
-    margin-left:20px;
-    margin-top:50px;
-    border:none;
+
+.tinydiv-1 {
+    margin-left: 30px;
+}
+
+.pname {
+    padding-left: 50px;
+
+    font-weight: bolder;
+}
+
+button {
+    height: 30px;
+    width: 100px;
+    background-color: white;
+    margin-left: 20px;
+    margin-top: 50px;
+    border: none;
     border-radius: 12px;
-    color:white;
-    cursor:pointer;
-    
+    color: black;
+    cursor: pointer;
+
 
 }
 
-.bigdiv{
-    margin-top:40px;
-    border:1px solid black;
-    width:60%;
+.bigdiv {
+
+    margin-top: 50px;
+    border: 1px solid black;
+    width: 60%;
 }
 
-.headerdiv{
-    display:flex;
+.headerdiv {
+
+    display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.pname1{
-    margin-left:10px;
+.pname1 {
+    margin-left: 10px;
     margin-top: 60px;
-    margin-right:30px;
-    width:70px;
+    margin-right: 30px;
+    width: 70px;
     font-weight: bold;
-    font-size:35px;
-    width:200px;
+    font-size: 35px;
+    width: 200px;
 
 }
 
-.buttonposition{
-    margin-top:0px;
-    margin-bottom:90px;
-    animation:race4 3s}
-.inputwidth{
-    width:80px;
-    height:30px;
+.buttonposition {
+    margin-top: 0px;
+    margin-bottom: 90px;
+    animation: race4 3s
 }
 
-.h1style{
-    font-size:40px;
-    margin-left:70px;
-    padding-top:40px;
+.inputwidth {
+    width: 80px;
+    height: 30px;
 }
 
-.pname2{
-    margin-left:70px;
-    margin-top:40px;
+.h1style {
+    font-size: 40px;
+    margin-left: 70px;
+    padding-top: 40px;
 }
 
-.caferank{
-    margin-top:100px;
+.pname2 {
+    margin-left: 70px;
+    margin-top: 40px;
+}
+
+.caferank {
+    margin-top: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     animation: race2 3s;
 }
 
-.caferank-1{
-    animation:race2 3s
+.caferank-1 {
+    animation: race2 3s
 }
 
-.caferank-2{
-    margin:0 100px 0 100px;
-    animation:race3 3s
-
+.caferank-2 {
+    margin: 0 100px 0 100px;
+    animation: race3 3s
 }
 
 
 
-.h1style-1{
+.h1style-1 {
     text-align: center;
-    margin-top:100px;
-    margin-bottom:30px;
+    margin-top: 100px;
+    margin-bottom: 30px;
 }
 
-.h2style{
+.h2style {
     text-align: center;
-    margin-bottom:30px;
+    margin-bottom: 30px;
 }
 
-.rankdiv1{
+.rankdiv1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom:80px;
-    padding-top:60px;
-    animation:race 3s;
+    padding-bottom: 80px;
+    padding-top: 60px;
+    animation: race 3s;
 
 }
 
-.rankdiv2{
+.rankdiv2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    animation:race 5s;
+
+    animation: race 5s;
 
 }
 
-.rankdiv-1{
-    margin:0 80px 0 80px;
-    
+.rankdiv-1 {
+    margin: 0 80px 0 80px;
+
 }
 
-.pname3{
-    margin-left:50px;
-    font-size:20px;
-    padding-bottom:30px;
-    padding-top:30px;
-}
-.pname4{
+.pname3 {
     margin-left: 50px;
-    font-size:15px;
-    padding-bottom:30px;
+    font-size: 20px;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
-.footerbutton{
-    margin-left:50px;
+.pname4 {
+    margin-left: 50px;
+    font-size: 15px;
+    padding-bottom: 30px;
 }
 
-main{
+.footerbutton {
+    margin-left: 50px;
+}
+
+main {
     margin-bottom: 200px;
-    height:1100px;
+    height: 1100px;
 }
 
-.astyle{
-    width:30px;
-    margin-left:50px;
-    background:blue;
-    color:white;
+.astyle {
+    width: 30px;
+    margin-left: 50px;
+    background: white;
+    color: black;
     border-radius: 12px;
     text-decoration: none;
 }
-.headerdiv{
-    background: #c99d63;
+
+.headerdiv {
+    /* background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)),url('https://64.media.tumblr.com/476bb112282a3ef7f7396de26f3d1b60/tumblr_pd8427dWCU1qbw2q1o1_1280.gifv');
+    background-position: center;
+    background-size:  auto;
+    background-position-x: left;
+    background-attachment: local;
+         */
+
+
 }
 
-main{
-    
-    margin:0;
-    padding:0;
+main {
+
+    margin: 0;
+    padding: 0;
 }
 
-.admin{
-    margin-bottom:20px;
+.admin {
+    margin-bottom: 20px;
 }
 
-footer{
-    height:200px;
-    margin:0;
-    padding:0
+footer {
+    height: 200px;
+    margin: 0;
+    padding: 0
 }
+
 @keyframes race {
-    from{transform: translateX(-300px)}
-    to{
+    from {
+        transform: translateX(-300px)
+    }
+
+    to {
         transform: translateX(0);
     }
 }
 
-@keyframes race2{
-    from{transform: translateX(300px)}
-    to{
-        transform:translateX(0)
+@keyframes race2 {
+    from {
+        transform: translateX(300px)
+    }
+
+    to {
+        transform: translateX(0)
     }
 }
 
-@keyframes race3{
-    from{transform: translateY(300px);}
-    to{
-        transform:translateY(0px)
+@keyframes race3 {
+    from {
+        transform: translateY(300px);
+    }
+
+    to {
+        transform: translateY(0px)
     }
 }
 
-@keyframes race4{
-    from{transform:translateY(-100px)}
-    to{transform:translateY(0px)}
+@keyframes race4 {
+    from {
+        transform: translateY(-100px)
+    }
+
+    to {
+        transform: translateY(0px)
+    }
 }
 
-header{
-    height:300px;
+header {
+    height: 300px;
 }

@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>please coffee</title>
     <link rel="stylesheet" href="../static/styles/style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+   
+
 </head>
 <body>
     <header class="headerdiv">
-        <img src="../static/img/coffee33.png" class="img">
+         <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/07df6e101533773.5f2100de4b5de.gif" class="img"> 
         <p class="pname1">커피사줘<p>
         
-        <div class="bigdiv">
+        <div class="bigdiv" >
             
             
-            <div class="smallheader1" id="toggle">
+            <div class="smallheader1" id="toggle" class="toggle">
             <form action="./index" method="post">
             <div class="smallheader">
                 <div class="tinydiv tinydiv-1">
@@ -38,10 +46,10 @@
                     <input type="text" class="inputwidth" name = 'address'>
                 </div>
                 <div>  
-                <button class="buttonmargin">등록</button>
+                <button class="btn btn-outline-dark">등록</button>
                 </div>
                 <div>
-                    <button id="closebutton" class="buttonmargin" onclick="close()">close</button>
+                    <button id="closebutton" type="button" class="btn btn-outline-dark ms-1" onclick="close2();">close</button>
                 </div>
             </div>
             </form>
@@ -50,76 +58,155 @@
     
     <div class="buttondiv">
         <form action="./admin">
-            <button type="submit" class="admin">admin</button>
+            <button type="submit" class="btn btn-outline-dark mb-1">admin</button>
         </form>
-        <button class="buttonposition" onclick="toggle()">카페등록</button>
+        <button class="btn btn-outline-dark" onclick="toggle();">카페등록</button>
         
     </div>
 </header>
       
 
-        <hr>
+        
     <main>
         <h1 class="h1style">카페 랭킹 Top3</h1>
         <p class="pname2">
-Ut ut qui et aliqua ex laboris. Ad occaecat pariatur id tempor minim ea tempor esse id sunt.
+
         </p>    
         <div class="caferank">
             <div class="caferank-1">
-               
-                <h2>1위 카페</h2>
-                <p></p>
-            </div>
+                <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal">
+                    cafeRanks.0.0</button>
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                  
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">cafeRanks.0.0</h4>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                  
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <p>분위기 : </p>
+                            <hr>
+                            <p>테이블수 :</p>
+                            <hr>
+                            <p>서비스타임 : </p>
+                            <hr>
+                            <p>추천메뉴 : </p>
+                        </div>
+                  
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                  
+                      </div>
+                    </div>
+                  </div>
+             </div>
             <div class="caferank-2">
                 
-                <h2>2위 카페</h2>
-                <p></p>
+                <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal">
+                    rank2
+                  </button>
+                  
+                  <!-- The Modal -->
+                  <div class="modal" id="myModal">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                  
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">Modal Heading</h4>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                  
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <p>분위기</p>
+                            <hr>
+                            <p>테이블수</p>
+                            <hr>
+                            <p>서비스타임</p>
+                            <hr>
+                            <p>추천메뉴</p>
+                        </div>
+                  
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                  
+                      </div>
+                    </div>
+                  </div>
+                  
             </div>
             <div class="caferank-3">
                 
-                <h2>3위 카페</h2>
-                <p></p>
+                <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal">
+                    rank3
+                  </button>
+                  
+                  <!-- The Modal -->
+                  <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                  
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">Modal Heading</h4>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                  
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <p>분위기</p>
+                            <hr>
+                            <p>테이블수</p>
+                            <hr>
+                            <p>서비스타임</p>
+                            <hr>
+                            <p>추천메뉴</p>
+                        </div>
+                  
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                  
+                      </div>
+                    </div>
+                  </div>
+                  
             </div>
         </div>
         
         <h1 class="h1style-1">메뉴 평점</h1>
         <h2 class="h2style">메뉴별 평점</h2>
        <div class="rankdiv1">
+        
             <div class="rankdiv-1">
-                <p>1위</p>
+                <p>1위 : {{menuranks.0.0}}</p>
+                <img src="" alt="이미지">
+            </div>
+             <div class="rankdiv-1">
+                <p>2위 : {{menuranks.0.0}}</p>
                 <img src="" alt="이미지">
             </div>
             <div class="rankdiv-1">
-                <p>2위</p>
+                <p>3위 : {{menuranks.0.0}}</p>
                 <img src="" alt="이미지">
             </div>
             <div class="rankdiv-1">
-                <p>3위</p>
+                <p>4위 : {{menuranks.0.0}}</p>
                 <img src="" alt="이미지">
-            </div>
-            <div class="rankdiv-1">
-                <p>4위</p>
-                <img src="" alt="이미지">
-            </div>
+            </div> 
+       
         </div>
-        <div class="rankdiv2">
-            <div class="rankdiv-1">
-                <p>5위</p>
-                <img src="" alt="이미지">
-            </div>
-            <div class="rankdiv-1">
-                <p>6위</p>
-                <img src="" alt="이미지">
-            </div>
-            <div class="rankdiv-1">
-                <p>7위</p>
-                <img src="" alt="이미지">
-            </div>
-            <div class="rankdiv-1">
-                <p>8위</p>
-                <img src="" alt="이미지">
-            </div>
-        </div>
+        
         <p></p>
     </main>
     <hr>
@@ -127,21 +214,19 @@ Ut ut qui et aliqua ex laboris. Ad occaecat pariatur id tempor minim ea tempor e
         <p class="pname3">카페 메뉴 리뷰하기</p>
         <p class="pname4">리뷰하고 싶은 카페를 선택하고 메뉴를 등록한 후 평점을 부여해주세요</p>
 
-        <a href="/menu" class="astyle">register</a>
+        <a href="/menu" class="btn btn-outline-dark ms-5 mb-5">리뷰하기</a>
     
     </footer>
     
     <script>
         
         function toggle(){
-            
-        toggle=document.getElementById('toggle')
+        const toggle=document.getElementById('toggle')
         toggle.style.display='block'
         }
-        function close(){
-        toggle=document.getElementById('toggle')
-        toggle.style.display="none"
-        
+        function close2(){
+        const close=document.querySelector('#toggle')
+        close.style.display="none"
         }
     </script>
 </body>
