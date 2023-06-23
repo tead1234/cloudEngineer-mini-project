@@ -20,9 +20,9 @@
 
         .mytitle {
             width: 100%;
-            height: 250px;
+            height: 900px;
 
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://item.kakaocdn.net/do/948bccaaee9abc3d6d1bc15a922bc88fcf5424e6c19751dbb6e59500cd4ef871');
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://cdnb.artstation.com/p/assets/images/images/011/676/781/original/pixel-jeff-cafe.gif?1530807813');
             background-position: center;
             background-size: contain;
 
@@ -129,6 +129,8 @@
             <button type="submit" class="btn btn-outline-light" >리뷰 보기</button>
         </form>
         <button onclick="open_box()">메뉴 리뷰하기</button>
+
+        
     </div>
     <form action="./menu" method="post">
         <div class="mypost" id="post-box" >
@@ -172,10 +174,10 @@
                     <option value="5">⭐⭐⭐⭐⭐</option>
                 </select>
             </div>
-            <div class="form-floating">
+            <!-- <div class="form-floating">
                 <textarea id="comment" class="form-control" placeholder="" name="cafe-coment" ></textarea>
                 <label for="floatingTextarea2">코멘트</label>
-            </div>
+            </div> -->
             <div class="mybtns">
                 <button  type="submit" class="btn btn-dark">리뷰남기기</button>
                 <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
@@ -184,9 +186,36 @@
     </form>
     <div class="mycards">
         <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-            {% for row in r_row %}
-            <p >{{row.1}}</p>           
-            {%endfor%}
+           
+         
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">메뉴</th>
+                    <th scope="col">맛</th>
+                    <th scope="col">원두</th>
+                    <th scope="col">별점</th>
+                    <th scope="col">양</th>
+                    <th scope="col">가격</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for review in reviews %}   
+                  <tr>
+                    <td>{{review.0}}</td>
+                    <td>{{review.1}}</td>
+                    <td>{{review.2}}</td>
+                    <td>{{review.3}}</td>
+                    <td>{{review.4}}</td>
+                    <td>{{review.5}}</td>
+                    
+                  </tr>
+                  {% endfor %}
+                  
+                </tbody>
+              </table>
+             
         </div>
     </div>
 
