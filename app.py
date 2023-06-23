@@ -132,21 +132,17 @@ def menu():
           '''
           cursor.execute(cafe_menu_IDsql, (cafeID, menuID,))
           cafe_menu_id = cursor.fetchone()[0]
-          query = "SELECT COUNT(*) FROM review WHERE cafe_menu_id = %s"
-          cursor.execute(query, (cafe_menu_id,))
-          count = cursor.fetchone()[0]
+          
 
-          if count == 0:
+        
     # 중복된 값이 없는 경우에만 INSERT 문 실행
-           review_sql = '''
+          review_sql = '''
             INSERT INTO review (cafe_menu_id, review_id, taste, bean, amount, price, rate)
             VALUES (%s, null, %s, %s, %s, %s, %s)
            '''
-           cursor.execute(review_sql, (cafe_menu_id, taste, been, amount, price, rate))
-           conn.commit()
-          else:
-           print("중복된 값이 있습니다.")
-
+          cursor.execute(review_sql, (cafe_menu_id, taste, been, amount, price, rate))
+          conn.commit()
+          
           return redirect(url_for('menu'))
 
 
