@@ -4,19 +4,21 @@ html,* {
     box-sizing: border-box;
     padding:0;
     margin:0;
+    font-family: 'Cafe24Ssurround';
 }
 
 @font-face {
-    font-family: 'HANAMDAUM';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2') format('woff2');
-    font-weight: 400;
+    font-family: 'Cafe24Ssurround';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+    font-weight: normal;
     font-style: normal;
 }
 
 .img{
-    width:150px;
-    height:150px;
+    width:250px;
+    height:250px;
     border-radius: 50%;
+    margin-right:60px;
 }
 
 .smallheader{
@@ -44,7 +46,8 @@ html,* {
     margin-left:30px;
 }
 .pname{
-    margin-left:30px;
+    padding-left:50px;
+    
     font-weight:bolder;
 }
 button{
@@ -64,7 +67,7 @@ button{
 .bigdiv{
     margin-top:40px;
     border:1px solid black;
-    width:75%;
+    width:60%;
 }
 
 .headerdiv{
@@ -74,12 +77,13 @@ button{
 }
 
 .pname1{
-    margin-left:40px;
-    margin-bottom: 50px;
-    margin-right:40px;
+    margin-left:10px;
+    margin-top: 60px;
+    margin-right:30px;
     width:70px;
     font-weight: bold;
-    font-size:25px;
+    font-size:35px;
+    width:200px;
 
 }
 
@@ -176,7 +180,7 @@ button{
 
 main{
     margin-bottom: 200px;
-    height:800px;
+    height:1100px;
 }
 
 .astyle{
@@ -188,7 +192,7 @@ main{
     text-decoration: none;
 }
 .headerdiv{
-    background: #BB860B;
+    background: #c99d63;
 }
 
 main{
@@ -230,4 +234,8 @@ footer{
 @keyframes race4{
     from{transform:translateY(-100px)}
     to{transform:translateY(0px)}
+}
+
+header{
+    height:300px;
 }
