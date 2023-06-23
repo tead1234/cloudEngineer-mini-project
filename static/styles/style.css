@@ -50,15 +50,15 @@ html,* {
     
     font-weight:bolder;
 }
-button{
+.button{
     height:30px;
     width:100px;
-    background-color: blue;
+    background-color:bisque;
     margin-left:20px;
     margin-top:50px;
     border:none;
     border-radius: 12px;
-    color:white;
+    color:black;
     cursor:pointer;
     
 
@@ -181,6 +181,7 @@ button{
 main{
     margin-bottom: 200px;
     height:1100px;
+    
 }
 
 .astyle{
@@ -206,7 +207,7 @@ main{
 }
 
 footer{
-    height:200px;
+    height:250px;
     margin:0;
     padding:0
 }
@@ -237,5 +238,38 @@ footer{
 }
 
 header{
-    height:300px;
+    height:400px;
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
 }
+
+.btncolor{
+    background-color: #c99d63;
+    border-radius: 50%;
+    width:100px;
+    height:100px;
+}
+
+.modal{
+    margin-top:50px;
+    
+   
+}
+
+div .modal-dialog{
+  
+    margin-right:680px;
+    
+    
+    
+}
+div .modal-content{
+    width:700px;
+    height:500px;
+    border-radius: 5%;
+    background-color: #c99d63;
+}
+
+
+
