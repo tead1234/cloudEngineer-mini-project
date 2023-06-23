@@ -236,6 +236,27 @@ def index():
         )
 
     else:    
+
+        conn = db.getConn()
+        cursor = db.getCursor()
+
+        menu_top5_sql = '''
+            select menu1.name, AVG(rate) from review
+            join cafe_menu on review.cafe_menu_id = cafe_menu.cafe_menu_id
+            join menu1 on cafe_menu.menu_id = menu1.menu_id
+            group by menu1.name
+            order by avg(rate)
+            limit 5; 
+        '''
+
+        cursor.execute(menu_top5_sql)
+        rows = cursor.fetchall()
+        menuranks = [list(rows[m]) for m in range(len(rows))]
+        print(menuranks)
+
+        return render_template(
+            'index.html', menuranks = menuranks
+
         ## sql get result 
         ## 
         conn = db.getConn()
@@ -261,8 +282,8 @@ def index():
         print('L',L)
         return render_template(
             'index.html',
-            top3 = L,
-            
+            top3 = L
+
         )
         # SELECT m.name AS 메뉴, avg(r.rate) AS 평균평점
         #     FROM cafe AS c
