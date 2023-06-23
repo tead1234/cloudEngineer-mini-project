@@ -36,12 +36,34 @@ def menu():
         cursor.execute(sql)
         rows = cursor.fetchall()
 
+        selected_cafe = request.args.get('cafe_id')
+        print(selected_cafe)
+        
+        conn = db.getConn()
+        cursor = db.getCursor()
+        
+        
+        select_cafe_sql = '''
+                select id from cafe where name = %s;
+            '''
+
+
         return render_template(
             'menu.html' , names=names
         )
     elif request.method == 'POST':
           conn = db.getConn()
           cursor = db.getCursor()
+          
+        #   selected_cafe = request.form['cafeName']
+
+        #   select_cafe_sql = '''
+        #     select id from cafe where name = %s
+        #    '''
+
+        #   cursor.execute(select_cafe_sql, (selected_cafe))
+        #   select_cafe_id = cursor.fetchone()
+        #   print('--------------',select_cafe_id)
 
           form = request.form
           name = form['name']
@@ -57,19 +79,46 @@ def menu():
           sql = '''
                 insert into menu1 (menu_id, name) values (null, %s)
           '''
-          print(name)
+          
           
           cursor.execute(sql,(menu))
           conn.commit()
 
+          cafe_name_sql = '''
+                select id from cafe where name = %s
+          '''
           
+          cursor.execute(cafe_name_sql, (name))
+          cafe_id = cursor.fetchone()
 
-        #   review_sql = '''
-        #     INSERT INTO review (review_id, taste, been, amount, price, rate, cafe_coment)
-        #     VALUES (null, %s, %s, %s, %s, %s, %s)
-        #     '''
-        #   cursor.execute(review_sql, (taste, been, amount, price, rate, coment))
-        #   conn.commit()
+          menu_id_sql = '''
+                select menu_id from menu1 where name = %s
+            '''
+          cursor.execute(menu_id_sql,(menu))
+          menu_id = cursor.fetchone()
+        
+          print(f'------------{menu_id}-')
+
+          cafe_menu_sql = '''
+             insert into cafe_menu (cafe_id, cafe_menu_id, menu_id)
+             values (%s, %s, %s)
+          '''
+          cafe_menu_id = int(cafe_id[0])+int(menu_id[0])
+
+          cursor.execute(cafe_menu_sql,(cafe_id, cafe_menu_id, menu_id ))
+          conn.commit()
+
+          review_sql = ''' 
+            INSERT INTO review (menu_id, review_id,  taste, bean, amount, price, rate)
+            VALUES (%s, null,  %s, %s, %s, %s, %s)
+            '''
+          cursor.execute(review_sql, (menu_id, taste, been, amount, price, rate))
+          conn.commit()
+
+
+         
+
+
 
           return redirect(url_for('menu'))
 

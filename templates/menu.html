@@ -92,35 +92,55 @@
             $('#post-box').hide()
         }
 
+        /*
+        $(document).ready(function(){
+            $('.cafe-select').on('change', function() {
+                var seletedCafe = $(this).val();
+                $.ajax({
+                    url : '/menu',
+                    type: 'GET',
+                    data: {cafeName: seletedCafe},
+                    success: function(response){
+
+                    }
+                })
+            })
+        })
+        */
+
+      
 
     </script>
 
 </head>
 <body>
     
-    <div class="mytitle">
+    <div class="mytitle" id="result-container">
         <h1>커피사줘</h1>
-        <select class="cafe-select" id="cafe" >
-            
-            <option selected>-- 카페 리뷰보기 --</option>
-            
-            {% for name in names %}
-            <option >{{name}}</option>           
-            {%endfor%}
-        </select>
+        <form action="./menu" method="get">
+            <select class="cafe-select" id="cafe_id" name="cafe_review">
+                
+                <option selected>-- 카페 선택 --</option>
+                
+                {% for name in names %}
+                <option value="{{name}}">{{name}}</option>           
+                {%endfor%}
+            </select>
+            <button type="submit" class="btn btn-outline-light" >리뷰 보기</button>
+        </form>
         <button onclick="open_box()">메뉴 리뷰하기</button>
     </div>
     <form action="./menu" method="post">
         <div class="mypost" id="post-box" >
             
-            <select class="cafe-select" id="cafe"  name="name">
+            <select class="cafe-select_review" id="cafe"  name="name">
             
                 <option selected>-- 카페 선택하기 --</option>
                 
                 {% for name in names %}
                 <option >{{name}}</option>           
                 {%endfor%}
-            </select>
+            </select> 
             <div class="form-floating mb-3">
                 <input id="" type="" class="form-control" placeholder="" name="menu">
                 <label>메뉴</label>
@@ -164,7 +184,9 @@
     </form>
     <div class="mycards">
         <div class="row row-cols-1 row-cols-md-4 g-4" id="cards-box">
-            
+            {% for row in r_row %}
+            <p >{{row.1}}</p>           
+            {%endfor%}
         </div>
     </div>
 
