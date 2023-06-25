@@ -11,6 +11,61 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <style>
+        .error-message{
+            font-size: 5px;
+            color: red;
+        }
+    </style>
+
+    <script>
+        function isTextNum(value){
+            return /^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/.test(value)
+        }
+
+        function cafeSubmitCheck(event){
+            var cafeName = document.getElementById("cafe-name");
+            var atnospher = document.getElementById("atnospher");
+            var tableCnt = document.getElementById("tableCnt");
+            var time = document.getElementById("time");
+            var errorElement = document.getElementById("error-message");
+
+
+            if(cafeName.value ===""){
+                errorElement.innerText = "카페이름을 입력해주세요!";
+                return false;
+            }
+
+            if(tableCnt.value ===""){
+                errorElement.innerText = "";
+                var errorElement = document.getElementById("error-message-tableCnt");
+                errorElement.innerText = "테이블 수를 입력해주세요!";
+                return false;
+            }
+
+            if(time.value ===""){
+                errorElement.innerText = "";
+                var errorElement = document.getElementById("error-message-time");
+                errorElement.innerText = "대기 시간을 입력해주세요!";
+                return false;
+            }
+
+
+
+            errorElement.innerText = "";
+            return true;
+        }
+
+        var form = document.querySelector("form");
+            form.addEventListener("submit", function (event) {
+                if (!cafeSubmitCheck()) {
+                    event.preventDefault();
+                }
+        });
+
+       
+    </script>
+
 </head>
 <body>
     <header class="headerdiv">
@@ -21,30 +76,36 @@
             
             
             <div class="smallheader1" id="toggle" class="toggle">
-            <form action="./" method="post">
+            <form action="./" method="post" onsubmit="return cafeSubmitCheck()">
             <div class="smallheader">
                 <div class="tinydiv tinydiv-1">
                     <p>카페 이름</p>
-                    <input type="text" class="inputwidth" name ='cafe-name'>
+                    <input type="text" class="inputwidth" id="cafe-name" name ='cafe-name'>
+                    <p class="error-message" id="error-message"></p>
                 </div>
+                
                 <div class="tinydiv">
                     <p>분위기</p>
-                    <input type="text"class="inputwidth" name ='atmospher'>
+                    <input type="text"class="inputwidth" id="atmospher" name ='atmospher'>
+                    <p></p>
                 </div>
                 <div class="tinydiv">
                     <p>테이블 수</p>
-                    <input type="int" class="inputwidth" name ='tableCnt'>
+                    <input type="number" class="inputwidth" id="tableCnt" name ='tableCnt'>
+                    <p class="error-message" id="error-message-tableCnt"></p>
                 </div>
                 <div class="tinydiv">
                     <p>serving-time</p>
-                    <input type="int" class="inputwidth" name = 'time'>
+                    <input type="number" class="inputwidth" id="time" name = 'time'>
+                    <p class="error-message" id="error-message-time"></p>
                 </div>
                 <div class="tinydiv">
                     <p>주소</p>
                     <input type="text" class="inputwidth" name = 'address'>
+                    <p></p>
                 </div>
                 <div>  
-                <button class="btn btn-outline-dark">등록</button>
+                <button type="submit" class="btn btn-outline-dark" >등록</button>
                 </div>
                 <div>
 
@@ -72,7 +133,7 @@
     <main>
         <h1 class="h1style">카페 랭킹 Top3</h1>
         <p class="pname2">
-            <img src="" class="img2"> 
+            <img src="https://cliply.co/wp-content/uploads/2021/09/CLIPLY_372109170_FREE_FIREWORKS_400.gif" class="img3"> 
         </p>    
         <div class="caferank">
             {% for item in top3 %}
