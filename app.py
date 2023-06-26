@@ -288,7 +288,7 @@ def index():
             join cafe_menu on review.cafe_menu_id = cafe_menu.cafe_menu_id
             join menu1 on cafe_menu.menu_id = menu1.menu_id
             group by menu1.name
-            order by avg(rate)
+            order by avg(rate) desc
             limit 5; 
         '''
 
