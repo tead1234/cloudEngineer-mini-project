@@ -138,10 +138,10 @@
         <div class="caferank">
             
             {% for item in top3 %}
-            <div class="caferank-1">
+            <div class="caferank-1" style="margin-left: 15%;">
 
-                <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal{{item[0]}}">
-                    {{item.1}}</button>
+                <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal{{item[0]}}" style="margin-left: 15%;">
+                    Rank{{loop.index}} {{item.1}}</button>
                     
                 <div class="modal" id="myModal{{item[0]}}">
                     <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/eb7bdb101533773.5f2100de4af23.gif" class="img2"> 
@@ -165,7 +165,7 @@
                             <hr>
                             <p>서비스타임 : {{item[2]}} 분</p>
                             <hr>
-                            <p>추천메뉴 : {{menuranks.0.0}}, {{menuranks.1.0}}</p>
+                        
                         </div>
                   
                         <!-- Modal footer -->
@@ -181,13 +181,13 @@
              {% endfor %}
         </div>
         
-        <h1 class="h1style-1">메뉴 순위</h1>
+        <h1 class="h1style-1">메뉴 순위 </h1>
         
        <div class="rankdiv1">
         {%for rank in menuranks %}
             <div class="rankdiv-1">
-                <p>{{loop.index}} 위 : {{rank.0}}</p>
-                <img style="height: 150px;" src="/static/img/{{rank.0}}.jpeg" alt="이미지">
+                <p>{{loop.index}} : {{rank.0}}</p>
+                <img style="height: 150px;" src="/static/img/{{rank.0}}.png" alt="이미지">
             </div>
             
        {%endfor%}

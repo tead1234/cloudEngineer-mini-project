@@ -6,6 +6,10 @@ html,
     margin: 0;
     font-family: 'Cafe24Ssurround';
 }
+.error-message{
+    font-size: 10px;
+    color: red;
+}
 
 @font-face {
     font-family: 'Cafe24Ssurround';
