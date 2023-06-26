@@ -188,6 +188,7 @@ def admin():
     return render_template(
         'admin.html'
     )
+
 ## cafe 
 @app.route('/regist/delete/<int:id>', methods =['GET']) # 요청 주소
 def regitst_delete(id):
@@ -229,6 +230,49 @@ def regist():
         'resgistRequest.html',
         l = jsonify(l).json
     )
+
+@app.route('/reviewRequest', methods =['GET', 'POST']) # 요청 주소
+def reviewRequest():
+    sql =  '''
+        SELECT r.review_id, c.NAME , m.name, r.taste, r.bean, r.rate, r.amount, r.price
+        FROM cafe AS c
+        JOIN cafe_menu AS cm
+        ON c.id = cm.cafe_id
+        JOIN menu1 AS m
+        ON cm.menu_id = m.menu_id
+        JOIN review AS r
+        ON cm.cafe_menu_id = r.cafe_menu_id; 
+    '''
+    conn = db.getConn()
+    cursor = db.getCursor()
+    cursor.execute(sql)
+    res = cursor.fetchall()
+    print('res', res)
+    l  = [list(r) for r in res]
+    # for i in l:
+    #     i[0] = f'[ id : {i[0]} ]'
+    print(l)
+    return render_template(
+        'reviewRequest.html',
+        l = jsonify(l).json
+    )
+
+## cafe 
+@app.route('/review/delete/<int:id>', methods =['GET']) # 요청 주소
+def review_delete(id):
+    sql =  '''
+        delete from review
+        where review_id = %s
+    '''
+    conn = db.getConn()
+    cursor = db.getCursor()
+    cursor.execute(sql, (id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return redirect('/reviewRequest')
+
 
 @app.route('/', methods =['GET', 'POST']) # 요청 주소
 def index():

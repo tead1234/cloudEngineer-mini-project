@@ -76,13 +76,16 @@
 
     <ul id="menu" class="menu" style="display: none;">
       <li><a href="/registRequest">서비스 삭제하기</a></li>
+      <li><a href="/reviewRequest">리뷰 삭제하기</a></li>
     </ul>
+  
   </div>
 
   <script>
     // JavaScript 코드
     const loginForm = document.getElementById('loginForm');
     const menu = document.getElementById('menu');
+    const review = document.getElementById('review');
 
     loginForm.addEventListener('submit', function(event) {
       event.preventDefault(); // 폼 제출 기본 동작 막기
