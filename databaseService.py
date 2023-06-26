@@ -3,13 +3,18 @@ import pymysql
 
 class DatabaseService:
     def __init__(self, ho, us, passd, d, char):
-        self.conn = pymysql.connect(host=ho, user=us, password=passd, db=d, charset=char)
-        self.cursor = self.conn.cursor()
+        self.ho = ho
+        self.us = us
+        self.passd = passd
+        self.d = d
+        self.char = char
     
     def getCursor(self):
+        self.cursor = self.conn.cursor()
         return self.cursor
     
     def getConn(self):
+        self.conn = pymysql.connect(host=self.ho, user=self.us, password=self.passd, db=self.d, charset=self.char)
         return self.conn
     
     def getReviews(self):
