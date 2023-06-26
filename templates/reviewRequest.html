@@ -67,13 +67,13 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">카페ID</th>
           <th scope="col">카페이름</th>
-          <th scope="col">카페주소</th>
-          <th scope="col">서비스_ID</th>
-          <th scope="col">분위기</th>
-          <th scope="col">서비스타임</th>
-          <th scope="col">카페ID</th>
+          <th scope="col">메뉴이름</th>
+          <th scope="col">맛</th>
+          <th scope="col">원두</th>
+          <th scope="col">평점</th>
+          <th scope="col">amount</th>
+          <th scope="col">price</th>
         </tr>
       </thead>
       <tbody>
@@ -126,7 +126,7 @@
     });
 
     function deleteReq(id){
-       window.location.href = `regist/delete/${id}`;
+       window.location.href = `review/delete/${id}`;
       
     }
 

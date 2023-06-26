@@ -188,6 +188,7 @@ def admin():
     return render_template(
         'admin.html'
     )
+
 ## cafe 
 @app.route('/regist/delete/<int:id>', methods =['GET']) # 요청 주소
 def regitst_delete(id):
@@ -233,10 +234,14 @@ def regist():
 @app.route('/reviewRequest', methods =['GET', 'POST']) # 요청 주소
 def reviewRequest():
     sql =  '''
-        select * from cafe join 
-        service
-        on cafe.id = service.cafe_id
-        
+        SELECT r.review_id, c.NAME , m.name, r.taste, r.bean, r.rate, r.amount, r.price
+        FROM cafe AS c
+        JOIN cafe_menu AS cm
+        ON c.id = cm.cafe_id
+        JOIN menu1 AS m
+        ON cm.menu_id = m.menu_id
+        JOIN review AS r
+        ON cm.cafe_menu_id = r.cafe_menu_id; 
     '''
     conn = db.getConn()
     cursor = db.getCursor()
@@ -251,6 +256,23 @@ def reviewRequest():
         'reviewRequest.html',
         l = jsonify(l).json
     )
+
+## cafe 
+@app.route('/review/delete/<int:id>', methods =['GET']) # 요청 주소
+def review_delete(id):
+    sql =  '''
+        delete from review
+        where review_id = %s
+    '''
+    conn = db.getConn()
+    cursor = db.getCursor()
+    cursor.execute(sql, (id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return redirect('/reviewRequest')
+
 
 @app.route('/', methods =['GET', 'POST']) # 요청 주소
 def index():
@@ -310,7 +332,7 @@ def index():
             join cafe_menu on review.cafe_menu_id = cafe_menu.cafe_menu_id
             join menu1 on cafe_menu.menu_id = menu1.menu_id
             group by menu1.name
-            order by avg(rate)
+            order by avg(rate) desc
             limit 5; 
         '''
 
