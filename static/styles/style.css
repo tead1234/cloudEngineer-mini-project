@@ -37,6 +37,7 @@ html,
 
 .smallheader1 {
     display: none;
+    border:1px solid black;
 }
 
 .tinydiv {
