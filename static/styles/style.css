@@ -55,6 +55,7 @@ html,
 
 .smallheader1 {
     display: none;
+    border:1px solid black;
 }
 
 .tinydiv {
@@ -92,8 +93,8 @@ button {
 .bigdiv {
 
     margin-top: 50px;
-    border: 1px solid black;
-    width: 60%;
+    
+    width: 50%;
 }
 
 .headerdiv {
@@ -370,3 +371,20 @@ div .modal-content{
   }
 
 
+.topsort{
+    margin-top:40%;
+   
+}
+
+.left{
+   margin-left:30%;
+}
+
+.left1{
+ margin-left:40%;
+}
+
+.next{
+    margin-left:40%;
+    margin-bottom:40%;
+}
