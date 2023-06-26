@@ -11,6 +11,61 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <style>
+        .error-message{
+            font-size: 5px;
+            color: red;
+        }
+    </style>
+
+    <script>
+        function isTextNum(value){
+            return /^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/.test(value)
+        }
+
+        function cafeSubmitCheck(event){
+            var cafeName = document.getElementById("cafe-name");
+            var atnospher = document.getElementById("atnospher");
+            var tableCnt = document.getElementById("tableCnt");
+            var time = document.getElementById("time");
+            var errorElement = document.getElementById("error-message");
+
+
+            if(cafeName.value ===""){
+                errorElement.innerText = "카페이름을 입력해주세요!";
+                return false;
+            }
+
+            if(tableCnt.value ===""){
+                errorElement.innerText = "";
+                var errorElement = document.getElementById("error-message-tableCnt");
+                errorElement.innerText = "테이블 수를 입력해주세요!";
+                return false;
+            }
+
+            if(time.value ===""){
+                errorElement.innerText = "";
+                var errorElement = document.getElementById("error-message-time");
+                errorElement.innerText = "대기 시간을 입력해주세요!";
+                return false;
+            }
+
+
+
+            errorElement.innerText = "";
+            return true;
+        }
+
+        var form = document.querySelector("form");
+            form.addEventListener("submit", function (event) {
+                if (!cafeSubmitCheck()) {
+                    event.preventDefault();
+                }
+        });
+
+       
+    </script>
+
 </head>
 <body>
     <header class="headerdiv">
@@ -21,30 +76,36 @@
             
             
             <div class="smallheader1" id="toggle" class="toggle">
-            <form action="./index" method="post">
+            <form action="./" method="post" onsubmit="return cafeSubmitCheck()">
             <div class="smallheader">
                 <div class="tinydiv tinydiv-1">
                     <p>카페 이름</p>
-                    <input type="text" class="inputwidth" name ='cafe-name'>
+                    <input type="text" class="inputwidth" id="cafe-name" name ='cafe-name'>
+                    <p class="error-message" id="error-message"></p>
                 </div>
+                
                 <div class="tinydiv">
                     <p>분위기</p>
-                    <input type="text"class="inputwidth" name ='atmospher'>
+                    <input type="text"class="inputwidth" id="atmospher" name ='atmospher'>
+                    <p></p>
                 </div>
                 <div class="tinydiv">
                     <p>테이블 수</p>
-                    <input type="int" class="inputwidth" name ='tableCnt'>
+                    <input type="number" class="inputwidth" id="tableCnt" name ='tableCnt'>
+                    <p class="error-message" id="error-message-tableCnt"></p>
                 </div>
                 <div class="tinydiv">
                     <p>serving-time</p>
-                    <input type="int" class="inputwidth" name = 'time'>
+                    <input type="number" class="inputwidth" id="time" name = 'time'>
+                    <p class="error-message" id="error-message-time"></p>
                 </div>
                 <div class="tinydiv">
                     <p>주소</p>
                     <input type="text" class="inputwidth" name = 'address'>
+                    <p></p>
                 </div>
                 <div>  
-                <button class="btn btn-outline-dark">등록</button>
+                <button type="submit" class="btn btn-outline-dark" >등록</button>
                 </div>
                 <div>
 
@@ -72,15 +133,17 @@
     <main>
         <h1 class="h1style">카페 랭킹 Top3</h1>
         <p class="pname2">
-
+            <img src="https://cliply.co/wp-content/uploads/2021/09/CLIPLY_372109170_FREE_FIREWORKS_400.gif" class="img2"> 
         </p>    
         <div class="caferank">
             {% for item in top3 %}
-            <div class="caferank-1">
+            <div class="caferank-1" style="margin-left: 15%;">
 
-                <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal{{item[0]}}">
-                    Rank{{item[0]}}</button>
+                <button type="button" class=" btncolor" data-bs-toggle="modal" data-bs-target="#myModal{{item[0]}}" style="margin-left: 15%;">
+                    Rank{{loop.index}} {{item.1}}</button>
+                    
                 <div class="modal" id="myModal{{item[0]}}">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/eb7bdb101533773.5f2100de4af23.gif" class="img2"> 
                     <div class="modal-dialog">
                       <div class="modal-content">
                   
@@ -97,11 +160,11 @@
 
                             <p>분위기 : {{item[3]}}</p>
                             <hr>
-                            <p>테이블수 : {{item[4]}}</p>
+                            <p>테이블수 : {{item[4]}} 개</p>
                             <hr>
-                            <p>서비스타임 : {{item[2]}}</p>
+                            <p>서비스타임 : {{item[2]}} 분</p>
                             <hr>
-                            <p>추천메뉴</p>
+                        
                         </div>
                   
                         <!-- Modal footer -->
@@ -117,27 +180,16 @@
              {% endfor %}
         </div>
         
-        <h1 class="h1style-1">메뉴 평점</h1>
-        <h2 class="h2style">메뉴별 평점</h2>
-       <div class="rankdiv1">
+        <h1 class="h1style-1">메뉴 순위 </h1>
         
+       <div class="rankdiv1">
+        {%for rank in menuranks %}
             <div class="rankdiv-1">
-                <p>1위 : {{menuranks.0.0}}</p>
-                <img src="" alt="이미지">
+                <p>{{loop.index}} : {{rank.0}}</p>
+                <img style="height: 150px;" src="/static/img/{{rank.0}}.png" alt="이미지">
             </div>
-             <div class="rankdiv-1">
-                <p>2위 : {{menuranks.0.0}}</p>
-                <img src="" alt="이미지">
-            </div>
-            <div class="rankdiv-1">
-                <p>3위 : {{menuranks.0.0}}</p>
-                <img src="" alt="이미지">
-            </div>
-            <div class="rankdiv-1">
-                <p>4위 : {{menuranks.0.0}}</p>
-                <img src="" alt="이미지">
-            </div> 
-       
+            
+       {%endfor%}
         </div>
         
         <p></p>

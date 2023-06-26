@@ -82,6 +82,11 @@
         .mybtns > button {
             margin-right: 10px;
         }
+
+        .error-message{
+            font-size: 5px;
+            color: red;
+        }
     </style>
 
     <script>
@@ -92,23 +97,69 @@
             $('#post-box').hide()
         }
 
-        /*
-        $(document).ready(function(){
-            $('.cafe-select').on('change', function() {
-                var seletedCafe = $(this).val();
-                $.ajax({
-                    url : '/menu',
-                    type: 'GET',
-                    data: {cafeName: seletedCafe},
-                    success: function(response){
+        
+        function validateForm(){
+            var cafeSelect  = document.getElementById("cafe-review");
+            var menu = document.getElementById("menu");
+            var amount = document.getElementById("amount");
+            var price = document.getElementById("price");
+            var star = document.getElementById("star");
 
-                    }
-                })
-            })
-        })
-        */
+            var errorElement = document.getElementById("error-message");
 
-      
+            if(cafeSelect.value === "-- 카페 선택하기 --"){
+                errorElement.innerText = "카페를 선택해주세요!";
+                return false;
+            }
+
+            if(menu.value === ""){
+                errorElement.innerText = "";
+                errorElement = document.getElementById("error-message-menu");
+                errorElement.innerText = "메뉴를 입력해주세요";
+                
+                return false;
+
+            }
+
+            if(amount.value === ""){
+                errorElement.innerText = "";
+                errorElement = document.getElementById("error-message-amount");
+               
+                errorElement.innerText = "메뉴의 용량(ml)을 입력해주세요";
+                
+                return false;
+
+            }
+
+            if(price.value === ""){
+                errorElement.innerText = "";
+                errorElement = document.getElementById("error-message-price");
+                
+                errorElement.innerText = "메뉴의 가격을 입력해주세요";
+                return false;
+
+            }
+
+            if(star.value === "-- 선택하기 --"){
+                errorElement.innerText = "";
+                errorElement = document.getElementById("error-message-star");
+                errorElement.innerText = "별점을 입력해주세요";
+                return false;
+
+            }
+
+
+
+            errorElement.innerText = "";
+            return true;
+        }
+
+        var form = document.querySelector("form");
+            form.addEventListener("submit", function (event) {
+                if (!validateForm()) {
+                    event.preventDefault();
+                }
+        });
 
     </script>
 
@@ -132,10 +183,10 @@
 
         
     </div>
-    <form action="./menu" method="post">
+    <form action="./menu" method="post" onsubmit="return validateForm()">
         <div class="mypost" id="post-box" >
             
-            <select class="cafe-select_review" id="cafe"  name="name">
+            <select class="cafe-select_review" id="cafe-review"  name="name">
             
                 <option selected>-- 카페 선택하기 --</option>
                 
@@ -143,26 +194,30 @@
                 <option >{{name}}</option>           
                 {%endfor%}
             </select> 
+            <div class="error-message" id="error-message"></div>
             <div class="form-floating mb-3">
-                <input id="" type="" class="form-control" placeholder="" name="menu">
+                <input id="menu" type="" class="form-control" placeholder="" name="menu">
                 <label>메뉴</label>
             </div>
+            <div class="error-message" id="error-message-menu"></div>
             <div class="form-floating mb-3">
-                <input id="" type="" class="form-control" placeholder="" name="taste">
+                <input id="taste" type="" class="form-control" placeholder="" name="taste">
                 <label>맛</label>
             </div>
             <div class="form-floating mb-3">
-                <input id="" type="" class="form-control" placeholder="" name="been">
+                <input id="been" type="" class="form-control" placeholder="" name="been">
                 <label>원두</label>
             </div>
             <div class="form-floating mb-3">
-                <input id="" type="" class="form-control" placeholder="" name="amount">
+                <input id="amount" type="number" class="form-control" placeholder="" name="amount">
                 <label>양</label>
             </div>
+            <div class="error-message" id="error-message-amount"></div>
             <div class="form-floating mb-3">
-                <input id="" type="" class="form-control" placeholder="" name="price">
+                <input id="price" type="number" class="form-control" placeholder="" name="price">
                 <label>가격</label>
             </div>
+            <div class="error-message" id="error-message-price"></div>
             <div class="input-group mb-3">
                 <label class="input-group-text" for="inputGroupSelect01">별점</label>
                 <select class="form-select" id="star" name="rate">
@@ -174,12 +229,13 @@
                     <option value="5">⭐⭐⭐⭐⭐</option>
                 </select>
             </div>
+            <div class="error-message" id="error-message-star"></div>
             <!-- <div class="form-floating">
                 <textarea id="comment" class="form-control" placeholder="" name="cafe-coment" ></textarea>
                 <label for="floatingTextarea2">코멘트</label>
             </div> -->
             <div class="mybtns">
-                <button  type="submit" class="btn btn-dark">리뷰남기기</button>
+                <button type="submit" class="btn btn-dark" >리뷰남기기</button>
                 <button onclick="close_box()" type="button" class="btn btn-outline-dark">닫기</button>
             </div>
         </div>

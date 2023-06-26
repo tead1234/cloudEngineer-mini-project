@@ -22,15 +22,14 @@ def menu():
         
         cursor.execute(sql)
         rows = cursor.fetchall()
-        
+        cursor.close()
+        conn.close()
         names = [list(rows[x]) for x in range(len(rows))]
         names = sum(names, [])
-        print(names)
 
-      
+
 
         selected_cafe = request.args.get('cafe_review')
-        print(selected_cafe)
         
         conn = db.getConn()
         cursor = db.getCursor()
@@ -42,7 +41,11 @@ def menu():
 
         cursor.execute(select_cafe_sql, (selected_cafe, ))
         rows = cursor.fetchone()
+        cursor.close()
+        conn.close()
         cafe_id = rows
+        conn = db.getConn()
+        cursor = db.getCursor()
         select_review_sql = '''
             SELECT  m.name, r.taste, r.bean, r.rate, r.amount, r.price  FROM cafe AS c
             JOIN cafe_menu AS cm
@@ -56,7 +59,8 @@ def menu():
 
         cursor.execute(select_review_sql, (cafe_id, ))
         rows = cursor.fetchall()
-        
+        cursor.close()
+        conn.close()
         reviews = [list(rows[x]) for x in range(len(rows))]
         print(reviews)
 
@@ -90,12 +94,15 @@ def menu():
           query = "SELECT COUNT(*) FROM menu1 WHERE name = %s"
           cursor.execute(query, (menu,))
           count = cursor.fetchone()[0]
+          
         ## insert menu
           if count == 0:
     # 중복된 값이 없는 경우에만 INSERT 문 실행
             insert_query = "INSERT INTO menu1 (menu_id, name) VALUES (null, %s)"
             cursor.execute(insert_query, (menu,))
             conn.commit()
+            cursor.close()
+            conn.close()
           else:
             print("중복된 값이 있습니다.")
           print('menu', menu)
@@ -104,35 +111,53 @@ def menu():
           menu_id_sql = '''
                 select menu_id from menu1 where name = %s
             '''
+          conn = db.getConn()
+          cursor = db.getCursor()
           cursor.execute(menu_id_sql,(menu,))
           menuID = cursor.fetchone()[0]
+          cursor.close()
+          conn.close()
           print('name',name)
           cafeIDsql =  '''
             select id from cafe where name = %s
           '''
+          conn = db.getConn()
+          cursor = db.getCursor()
           cursor.execute(cafeIDsql, (name,))
           cafeID = cursor.fetchone()[0]
+          cursor.close()
+          conn.close()
           print(cafeID)
           query = "SELECT COUNT(*) FROM cafe_menu WHERE cafe_id = %s AND menu_id = %s"
+          conn = db.getConn()
+          cursor = db.getCursor()
           cursor.execute(query, (cafeID, menuID))
           count = cursor.fetchone()[0]
+          cursor.close()
+          conn.close()
 
           if count == 0:
     # 중복된 값이 없는 경우에만 INSERT 문 실행
+            conn = db.getConn()
+            cursor = db.getCursor()
             insert_query = "INSERT INTO cafe_menu (cafe_menu_id, cafe_id, menu_id) VALUES (null, %s, %s)"
             cursor.execute(insert_query, (cafeID, menuID))
             conn.commit()
+            cursor.close()
+            conn.close()
           else:
             print("중복된 값이 있습니다.")
         #   cursor.execute(sql2, (cafeID, menuID,))
 
-          
+          conn = db.getConn()
+          cursor = db.getCursor()
           cafe_menu_IDsql =  '''
             select cafe_menu_id from cafe_menu where cafe_id = %s and menu_id = %s
           '''
           cursor.execute(cafe_menu_IDsql, (cafeID, menuID,))
           cafe_menu_id = cursor.fetchone()[0]
-          
+          cursor.close()
+          conn.close()
 
         
     # 중복된 값이 없는 경우에만 INSERT 문 실행
@@ -140,8 +165,13 @@ def menu():
             INSERT INTO review (cafe_menu_id, review_id, taste, bean, amount, price, rate)
             VALUES (%s, null, %s, %s, %s, %s, %s)
            '''
+          conn = db.getConn()
+          cursor = db.getCursor()
           cursor.execute(review_sql, (cafe_menu_id, taste, been, amount, price, rate))
           conn.commit()
+          cursor.close()
+          conn.close()
+
           
           return redirect(url_for('menu'))
 
@@ -169,9 +199,10 @@ def regitst_delete(id):
     cursor = db.getCursor()
     cursor.execute(sql, (id,))
     conn.commit()
-    return render_template(
-        'registRequest.html'
-    )
+    cursor.close()
+    conn.close()
+
+    return redirect('/registRequest')
 
 
 @app.route('/registRequest', methods =['GET', 'POST']) # 요청 주소
@@ -186,6 +217,9 @@ def regist():
     cursor = db.getCursor()
     cursor.execute(sql)
     res = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
     print('res', res)
     l  = [list(r) for r in res]
     # for i in l:
@@ -196,7 +230,7 @@ def regist():
         l = jsonify(l).json
     )
 
-@app.route('/index', methods =['GET', 'POST']) # 요청 주소
+@app.route('/', methods =['GET', 'POST']) # 요청 주소
 def index():
     ## post 
     if request.method == 'POST':
@@ -216,20 +250,29 @@ def index():
         cursor = db.getCursor()
         cursor.execute(sql,(cafeName, cafeAddr))
         conn.commit()
+        cursor.close()
+        conn.close()
+
+        conn = db.getConn()
+        cursor = db.getCursor()
         searchSql = '''
             select id from cafe where name = %s
         '''
         cursor.execute(searchSql,(cafeName, ))
         cafe_id = cursor.fetchone()[0]
+        cursor.close()
+        conn.close()
         sql = '''
             insert into service (id,atmosphere, tableCnt, service_time,cafe_id)
             values(null, %s, %s, %s, %s)
         '''
+        conn = db.getConn()
+        cursor = db.getCursor()
         cursor.execute(sql,(atmo, table, time, cafe_id))
         
         conn.commit()
-        # cursor.close()
-        # conn.close()
+        cursor.close()
+        conn.close()
         
         return render_template(
             'index.html'
@@ -251,25 +294,20 @@ def index():
 
         cursor.execute(menu_top5_sql)
         rows = cursor.fetchall()
+        cursor.close()
+        conn.close()
         menuranks = [list(rows[m]) for m in range(len(rows))]
-        print(menuranks)
-
-        return render_template(
-            'index.html', menuranks = menuranks
-
-        ## sql get result 
-        ## 
         conn = db.getConn()
         cursor = db.getCursor()
         getTop3Sql = '''
-            SELECT c.name, avg(r.rate), avg(s.service_time), s.atmosphere, avg(s.tableCnt)
+            SELECT c.name, avg(r.rate), round(avg(s.service_time),0), s.atmosphere, round(avg(s.tableCnt), 0)
             FROM cafe AS c
             JOIN cafe_menu AS cm
             ON c.id = cm.cafe_id
             JOIN menu1 AS m
             ON cm.menu_id = m.menu_id
             JOIN review AS r
-            ON m.menu_id = r.cafe_menu_id
+            ON cm.cafe_menu_id = r.cafe_menu_id
             JOIN service as s
             ON c.id = s.cafe_id
             GROUP BY c.name
@@ -277,29 +315,16 @@ def index():
         '''
         cursor.execute(getTop3Sql)
         res = cursor.fetchall()
-        ##('bana',321321)
+        cursor.close()
+        conn.close()
+        print('res', res)
         L = [[idx+1,r[0],r[2],r[3],r[4]] for idx,r in enumerate(res)]
         print('L',L)
-        return render_template(
-            'index.html',
-            top3 = L
-
-        )
-        # SELECT m.name AS 메뉴, avg(r.rate) AS 평균평점
-        #     FROM cafe AS c
-        #     JOIN cafe_menu AS cm
-        #     ON c.id = cm.cafe_id
-        #     JOIN menu1 AS m
-        #     ON cm.menu_id = m.menu_id
-        #     JOIN review AS r
-        #     ON m.menu_id = r.cafe_menu_id
-        #     GROUP BY m.name HAVING avg(r.rate)
-        #     ORDER BY AVG(r.rate) desc
-        #     LIMIT 5 ;
         
-        # )
-    
-    
+        return render_template(
+            'index.html', menuranks = menuranks, top3 = L
+        )
+         
 
 if __name__ == '__main__':
     app.run(debug= True)
