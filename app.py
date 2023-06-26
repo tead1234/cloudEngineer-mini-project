@@ -196,6 +196,28 @@ def regist():
         l = jsonify(l).json
     )
 
+@app.route('/reviewRequest', methods =['GET', 'POST']) # 요청 주소
+def reviewRequest():
+    sql =  '''
+        select * from cafe join 
+        service
+        on cafe.id = service.cafe_id
+        
+    '''
+    conn = db.getConn()
+    cursor = db.getCursor()
+    cursor.execute(sql)
+    res = cursor.fetchall()
+    print('res', res)
+    l  = [list(r) for r in res]
+    # for i in l:
+    #     i[0] = f'[ id : {i[0]} ]'
+    print(l)
+    return render_template(
+        'reviewRequest.html',
+        l = jsonify(l).json
+    )
+
 @app.route('/', methods =['GET', 'POST']) # 요청 주소
 def index():
     ## post 

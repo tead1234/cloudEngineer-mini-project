@@ -136,6 +136,7 @@
             <img src="https://cliply.co/wp-content/uploads/2021/09/CLIPLY_372109170_FREE_FIREWORKS_400.gif" class="img3"> 
         </p>    
         <div class="caferank">
+            
             {% for item in top3 %}
             <div class="caferank-1">
 
@@ -185,8 +186,8 @@
        <div class="rankdiv1">
         {%for rank in menuranks %}
             <div class="rankdiv-1">
-                <p>{{loop.index}} : {{rank.0}}</p>
-                <img src="" alt="이미지">
+                <p>{{loop.index}} 위 : {{rank.0}}</p>
+                <img style="height: 150px;" src="/static/img/{{rank.0}}.jpeg" alt="이미지">
             </div>
             
        {%endfor%}
