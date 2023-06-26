@@ -94,7 +94,7 @@ button {
 
     margin-top: 50px;
     
-    width: 60%;
+    width: 50%;
 }
 
 .headerdiv {
@@ -371,3 +371,20 @@ div .modal-content{
   }
 
 
+.topsort{
+    margin-top:40%;
+   
+}
+
+.left{
+   margin-left:30%;
+}
+
+.left1{
+ margin-left:40%;
+}
+
+.next{
+    margin-left:40%;
+    margin-bottom:40%;
+}
